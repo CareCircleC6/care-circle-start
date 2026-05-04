@@ -68,8 +68,8 @@ function Index() {
     <div className="min-h-screen bg-background">
       {/* Nav */}
       <nav className="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-md border-b border-border/50">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <div className="max-w-6xl mx-auto px-6 py-2 md:h-16 flex flex-col md:flex-row items-center md:justify-between gap-1 md:gap-0">
+          <div className="flex items-center gap-2 shrink-0">
              <div className="flex flex-col justify-between" style={{ fontFamily: "var(--font-display)" }}>
                <span className="text-[1.15rem] font-bold leading-none">
                 <span style={{ color: "#1B365D" }}>Care </span>
@@ -78,11 +78,11 @@ function Index() {
                <span className="text-[1.15rem] font-bold leading-none" style={{ color: "#1B365D" }}>Global</span>
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <Link to="/login">
-              <Button variant="heroGhost" size="xl">Log In</Button>
+          <div className="flex items-center gap-2 md:gap-3">
+            <Link to="/login" className="flex-1 md:flex-none">
+              <Button variant="heroGhost" size="default" className="w-full md:w-auto md:h-14 md:px-10 md:text-base md:rounded-xl">Log In</Button>
             </Link>
-            <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
+            <Button variant="hero" size="default" className="flex-1 md:flex-none md:h-14 md:px-10 md:text-base md:rounded-xl" onClick={() => setModalOpen(true)}>Get Started</Button>
           </div>
         </div>
       </nav>
