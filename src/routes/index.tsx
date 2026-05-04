@@ -60,6 +60,39 @@ function Index() {
         </div>
       </section>
 
+      {/* Sign Up */}
+      <section className="py-20 md:py-28 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
+            Sign Up
+          </h2>
+          <p className="text-center text-muted-foreground mb-14 max-w-xl mx-auto">Choose the role that best describes you to get started.</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Patient */}
+            <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all">
+              <span className="text-4xl mb-4">🫀</span>
+              <h3 className="text-xl font-semibold text-foreground mb-2">I am the Patient</h3>
+              <p className="text-muted-foreground mb-6 leading-relaxed">Set up care for myself and keep my health records organized in one place.</p>
+              <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as Patient</Button>
+            </div>
+            {/* Family */}
+            <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all">
+              <span className="text-4xl mb-4">👨‍👩‍👧</span>
+              <h3 className="text-xl font-semibold text-foreground mb-2">I am a Family Member</h3>
+              <p className="text-muted-foreground mb-6 leading-relaxed">Coordinate care for a parent or loved one — even from a distance.</p>
+              <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as Family</Button>
+            </div>
+            {/* Professional */}
+            <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all">
+              <span className="text-4xl mb-4">🩺</span>
+              <h3 className="text-xl font-semibold text-foreground mb-2">I am a Professional</h3>
+              <p className="text-muted-foreground mb-6 leading-relaxed">Register as a nurse or care manager and join our coordinator network.</p>
+              <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as Professional</Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works */}
       <section id="how-it-works" className="py-20 md:py-28 px-6">
         <div className="max-w-5xl mx-auto">
@@ -91,39 +124,6 @@ function Index() {
               "Finally, one place where I can see everything about my mother's care — even from 3,000 miles away."
             </blockquote>
             <p className="mt-4 text-muted-foreground">— Early beta participant</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Sign Up */}
-      <section className="py-20 md:py-28 px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
-            Sign Up
-          </h2>
-          <p className="text-center text-muted-foreground mb-14 max-w-xl mx-auto">Choose the role that best describes you to get started.</p>
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Patient */}
-            <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all">
-              <span className="text-4xl mb-4">🫀</span>
-              <h3 className="text-xl font-semibold text-foreground mb-2">I am the Patient</h3>
-              <p className="text-muted-foreground mb-6 leading-relaxed">Set up care for myself and keep my health records organized in one place.</p>
-              <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as Patient</Button>
-            </div>
-            {/* Family */}
-            <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all">
-              <span className="text-4xl mb-4">👨‍👩‍👧</span>
-              <h3 className="text-xl font-semibold text-foreground mb-2">I am a Family Member</h3>
-              <p className="text-muted-foreground mb-6 leading-relaxed">Coordinate care for a parent or loved one — even from a distance.</p>
-              <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as Family</Button>
-            </div>
-            {/* Professional */}
-            <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all">
-              <span className="text-4xl mb-4">🩺</span>
-              <h3 className="text-xl font-semibold text-foreground mb-2">I am a Professional</h3>
-              <p className="text-muted-foreground mb-6 leading-relaxed">Register as a nurse or care manager and join our coordinator network.</p>
-              <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as Professional</Button>
-            </div>
           </div>
         </div>
       </section>
