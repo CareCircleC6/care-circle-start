@@ -33,8 +33,8 @@ function Index() {
       <nav className="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src={logoImage} alt="Care Circle Global" className="h-10 w-10" />
-            <span className="text-sm font-bold leading-tight" style={{ fontFamily: "var(--font-display)" }}>
+            <img src={logoImage} alt="Care Circle Global" className="h-10 w-10 flex-shrink-0" />
+            <span className="text-base font-bold leading-[1.15]" style={{ fontFamily: "var(--font-display)" }}>
               <span style={{ color: "#1B365D" }}>Care </span>
               <span style={{ color: "#E87722" }}>Circle</span>
               <br />
