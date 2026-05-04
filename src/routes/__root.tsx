@@ -29,16 +29,16 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Care Circle Global — Care Coordination Made Simple" },
-      { name: "description", content: "Organize health records, coordinate care, and stay informed — so nothing falls through the cracks." },
+      { title: "Care Circle Global - Care Coordination Made Simple" },
+      { name: "description", content: "Organize health records, coordinate care, and stay informed - so nothing falls through the cracks." },
       { name: "author", content: "Care Circle Global" },
-      { property: "og:title", content: "Care Circle Global — Care Coordination Made Simple" },
-      { property: "og:description", content: "Organize health records, coordinate care, and stay informed — so nothing falls through the cracks." },
+      { property: "og:title", content: "Care Circle Global - Care Coordination Made Simple" },
+      { property: "og:description", content: "Organize health records, coordinate care, and stay informed - so nothing falls through the cracks." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Care Circle Global — Care Coordination Made Simple" },
-      { name: "twitter:description", content: "Organize health records, coordinate care, and stay informed — so nothing falls through the cracks." },
+      { name: "twitter:title", content: "Care Circle Global - Care Coordination Made Simple" },
+      { name: "twitter:description", content: "Organize health records, coordinate care, and stay informed - so nothing falls through the cracks." },
     ],
     links: [
       {
