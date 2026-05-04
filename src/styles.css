@@ -152,4 +152,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  a, button, [role="button"], input[type="submit"], .hover-glow {
+    transition: box-shadow 0.25s ease, transform 0.2s ease;
+  }
+
+  a:hover, button:hover, [role="button"]:hover, input[type="submit"]:hover, .hover-glow:hover {
+    box-shadow: 0 0 15px 3px oklch(0.60 0.14 180 / 40%), 0 0 30px 6px oklch(0.60 0.14 180 / 15%);
+  }
 }
