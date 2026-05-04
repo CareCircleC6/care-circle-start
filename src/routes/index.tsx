@@ -17,10 +17,10 @@ const problems = [
 ];
 
 const steps = [
-  { num: "01", title: "Upload", desc: "Prescriptions, lab results, or voice notes" },
-  { num: "02", title: "Unify", desc: "Care Circle Global builds one current, accurate health view" },
-  { num: "03", title: "Flag", desc: "Drug interactions, missed tests, and care gaps are flagged" },
-  { num: "04", title: "Act", desc: "Tasks are assigned, alerts sent, daily briefings generated" },
+   { num: "01", title: "On-board", desc: "Sign up, add your care team, and upload key health documents" },
+   { num: "02", title: "Organize", desc: "Care Circle Global builds one current, accurate health view" },
+   { num: "03", title: "Monitor", desc: "Drug interactions, missed tests, and care gaps are flagged automatically" },
+   { num: "04", title: "Coordinate", desc: "Tasks are assigned, alerts sent, and daily briefings keep everyone aligned" },
 ];
 
 function Index() {
