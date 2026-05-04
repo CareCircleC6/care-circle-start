@@ -71,23 +71,23 @@ function Index() {
             {/* Patient */}
             <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all">
               <span className="text-4xl mb-4">🫀</span>
-              <h3 className="text-xl font-semibold text-foreground mb-2">I am the Patient</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-2">The Patient</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">Set up care for myself and keep my health records organized in one place.</p>
-              <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as Patient</Button>
+              <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up</Button>
             </div>
             {/* Family */}
             <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all">
               <span className="text-4xl mb-4">👨‍👩‍👧</span>
-              <h3 className="text-xl font-semibold text-foreground mb-2">I am a Family Member</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-2">A Family</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">Coordinate care for a parent or loved one — even from a distance.</p>
-              <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as Family</Button>
+              <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up</Button>
             </div>
             {/* Professional */}
             <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all">
               <span className="text-4xl mb-4">🩺</span>
-              <h3 className="text-xl font-semibold text-foreground mb-2">I am a Professional</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-2">A Care Coordinator</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">Register as a nurse or care manager and join our coordinator network.</p>
-              <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as Professional</Button>
+              <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up</Button>
             </div>
           </div>
         </div>
