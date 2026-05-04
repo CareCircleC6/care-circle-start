@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SignupModal } from "@/components/SignupModal";
@@ -40,7 +40,12 @@ function Index() {
               <span style={{ color: "#1B365D" }}>Global</span>
             </span>
           </div>
-          <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
+          <div className="flex items-center gap-3">
+            <Link to="/login">
+              <Button variant="heroGhost" size="xl">Log In</Button>
+            </Link>
+            <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
+          </div>
         </div>
       </nav>
 
