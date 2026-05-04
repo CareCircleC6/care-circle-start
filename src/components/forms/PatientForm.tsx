@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod/v4";
+import { z } from "zod";
 import { FormField } from "./FormField";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 const schema = z.object({
   fullName: z.string().min(2, "Name is required"),
-  email: z.email("Enter a valid email address"),
+  email: z.string().email("Enter a valid email address"),
   phone: z.string().min(6, "Enter a valid phone number"),
   password: z.string().min(8, "Password must be at least 8 characters"),
   dob: z.string().min(1, "Date of birth is required"),
