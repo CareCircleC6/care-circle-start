@@ -43,7 +43,6 @@ function Index() {
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               Now accepting early access signups
             </div>
-            <h1 className="text-4xl md:text-[3.5rem] lg:text-6xl font-bold text-foreground leading-[1.1] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
             <h1 className="text-4xl md:text-[3.5rem] lg:text-6xl font-bold text-foreground leading-[0.95] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
               Care Coordination<br />and Navigation Hub
             </h1>
