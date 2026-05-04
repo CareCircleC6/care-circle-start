@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SignupModal } from "@/components/SignupModal";
 import heroImage from "@/assets/hero-illustration.jpg";
@@ -24,11 +24,6 @@ const steps = [
 
 function Index() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -43,7 +38,7 @@ function Index() {
       {/* Hero */}
       <section className="pt-32 pb-20 md:pt-44 md:pb-36 px-6 overflow-hidden">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div className={`transition-all duration-700 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               Now accepting early access signups
@@ -59,7 +54,7 @@ function Index() {
               <Button variant="heroGhost" size="xl" onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}>See How It Works</Button>
             </div>
           </div>
-          <div className={`flex justify-center transition-all duration-700 delay-200 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="flex justify-center">
             <img src={heroImage} alt="CareCircle — connected care illustration" width={560} height={420} className="w-full max-w-md drop-shadow-xl" />
           </div>
         </div>
