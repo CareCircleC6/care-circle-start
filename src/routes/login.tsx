@@ -42,7 +42,22 @@ function LoginPage() {
       if (error) {
         setError(error.message);
       } else {
-        navigate({ to: "/" });
+        // Check if profile is completed
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+          const { data: profile } = await supabase
+            .from("profiles")
+            .select("profile_completed")
+            .eq("user_id", user.id)
+            .single();
+          if (profile && !profile.profile_completed) {
+            navigate({ to: "/complete-profile" });
+          } else {
+            navigate({ to: "/" });
+          }
+        } else {
+          navigate({ to: "/" });
+        }
       }
     }
     setLoading(false);
@@ -60,7 +75,22 @@ function LoginPage() {
       return;
     }
     if (result.redirected) return;
-    navigate({ to: "/" });
+    // Check profile completion after OAuth
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("profile_completed")
+        .eq("user_id", user.id)
+        .single();
+      if (profile && !profile.profile_completed) {
+        navigate({ to: "/complete-profile" });
+      } else {
+        navigate({ to: "/" });
+      }
+    } else {
+      navigate({ to: "/" });
+    }
   };
 
   return (
