@@ -58,10 +58,10 @@ function Index() {
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               Now accepting early access signups
             </div>
-            <h1 className="text-4xl md:text-[3.5rem] lg:text-6xl font-bold text-foreground leading-[0.95] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
+            <h1 className="text-4xl md:text-[3.5rem] lg:text-6xl font-bold text-black leading-[0.95] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
               Care Coordination<br />and Navigation Hub
             </h1>
-            <p className="mt-6 text-xl md:text-2xl text-foreground max-w-lg leading-relaxed">
+            <p className="mt-6 text-xl md:text-2xl text-black max-w-lg leading-relaxed">
               Organize health records and navigate complex care — get your care coordination team.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
@@ -81,7 +81,7 @@ function Index() {
           <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
             Sign Up
           </h2>
-          <p className="text-center text-foreground text-lg mb-14 max-w-xl mx-auto">Whether you're a patient, a family member, or a care coordinator — start in under 2 minutes.</p>
+          <p className="text-center text-black text-lg mb-14 max-w-xl mx-auto">Whether you're a patient, a family member, or a care coordinator — start in under 2 minutes.</p>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Patient */}
              <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all text-black">
@@ -89,7 +89,7 @@ function Index() {
                  <User className="w-8 h-8 text-primary" strokeWidth={1.75} />
                </div>
                <h3 className="text-xl font-semibold text-black mb-2">The Patient</h3>
-               <p className="text-black/70 mb-6 leading-relaxed">Set up care for myself and keep my health records organized in one place.</p>
+                <p className="text-black mb-6 leading-relaxed">Set up care for myself and keep my health records organized in one place.</p>
               <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as a Patient</Button>
             </div>
             {/* Family */}
@@ -98,7 +98,7 @@ function Index() {
                  <Users className="w-8 h-8 text-primary" strokeWidth={1.75} />
                </div>
                <h3 className="text-xl font-semibold text-black mb-2">A Family</h3>
-               <p className="text-black/70 mb-6 leading-relaxed">Coordinate care for a parent or loved one — even from a distance.</p>
+                <p className="text-black mb-6 leading-relaxed">Coordinate care for a parent or loved one — even from a distance.</p>
               <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as a Family</Button>
             </div>
             {/* Professional */}
@@ -107,7 +107,7 @@ function Index() {
                  <ClipboardCheck className="w-8 h-8 text-primary" strokeWidth={1.75} />
                </div>
                <h3 className="text-xl font-semibold text-black mb-2">A Care Coordinator</h3>
-              <p className="text-black/70 mb-6 leading-relaxed">Register as a nurse, navigator or care coordinator and join our coordinator network.</p>
+               <p className="text-black mb-6 leading-relaxed">Register as a nurse, navigator or care coordinator and join our coordinator network.</p>
               <Button variant="hero" size="xl" className="w-full bg-[#3B82F6] hover:bg-[#2563EB] text-white" onClick={() => setModalOpen(true)}>Sign Up as a Care Coordinator</Button>
             </div>
           </div>
@@ -141,10 +141,10 @@ function Index() {
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L10.163 5.279L15 5.979L11.5 9.221L12.326 14L8 11.779L3.674 14L4.5 9.221L1 5.979L5.837 5.279L8 1Z" fill="currentColor"/></svg>
               HIPAA-grade privacy controls
             </div>
-            <blockquote className="text-xl md:text-2xl text-foreground font-medium leading-relaxed italic max-w-2xl mx-auto">
+             <blockquote className="text-xl md:text-2xl text-black font-medium leading-relaxed italic max-w-2xl mx-auto">
               "Finally, one place where I can see everything about my mother's care — even from 3,000 miles away."
             </blockquote>
-            <p className="mt-4 text-muted-foreground">— Early beta participant</p>
+             <p className="mt-4 text-black">— Early beta participant</p>
           </div>
         </div>
       </section>
@@ -153,10 +153,10 @@ function Index() {
       <section className="py-24 md:py-32 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <div>
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6" style={{ fontFamily: "var(--font-display)" }}>
+           <h2 className="text-3xl md:text-5xl font-bold text-black mb-6" style={{ fontFamily: "var(--font-display)" }}>
               Ready to bring care together?
             </h2>
-            <p className="text-xl md:text-2xl text-foreground mb-10 max-w-xl mx-auto">
+             <p className="text-xl md:text-2xl text-black mb-10 max-w-xl mx-auto">
               Whether you're a patient, a family member, or a care coordinator — start in under 2 minutes.
             </p>
             <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
@@ -167,10 +167,10 @@ function Index() {
       {/* Problem */}
       <section className="py-20 md:py-28 px-6 bg-muted/40">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
+           <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
             Sound familiar?
           </h2>
-          <p className="text-center text-muted-foreground mb-14 max-w-xl mx-auto">Families dealing with chronic or complex care face these problems every day.</p>
+           <p className="text-center text-black mb-14 max-w-xl mx-auto">Families dealing with chronic or complex care face these problems every day.</p>
           <div className="grid sm:grid-cols-2 gap-6">
             {problems.map((p, i) => (
               <div key={i} className="flex gap-4 p-6 rounded-2xl bg-card border border-border/50 hover:shadow-md transition-shadow">
