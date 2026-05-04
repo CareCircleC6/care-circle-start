@@ -1,10 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { SignupModal } from "@/components/SignupModal";
+import { SignupModal, type UserRole } from "@/components/SignupModal";
 import { User, Users, ClipboardCheck, FileText, Pill, MessageCircle, Zap, Lock } from "lucide-react";
 import logoImage from "@/assets/logo-new.png";
-import type { UserRole } from "@/components/SignupModal";
 
 export const Route = createFileRoute("/")({
   component: Index,
