@@ -120,7 +120,7 @@ function Index() {
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6" style={{ fontFamily: "var(--font-display)" }}>
               Ready to bring care together?
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-xl mx-auto">
+            <p className="text-xl md:text-2xl text-foreground mb-10 max-w-xl mx-auto">
               Whether you're a patient, a family member, or a care professional — start in under 2 minutes.
             </p>
             <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
