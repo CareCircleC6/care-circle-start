@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { SignupModal } from "@/components/SignupModal";
 import { User, Users, ClipboardCheck, FileText, Pill, MessageCircle, Zap, Lock } from "lucide-react";
 import logoImage from "@/assets/logo-new.png";
-import { RoleSelector } from "@/components/RoleSelector";
 import type { UserRole } from "@/components/SignupModal";
 
 export const Route = createFileRoute("/")({
