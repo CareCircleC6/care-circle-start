@@ -48,7 +48,7 @@ function Index() {
               Care Coordination<br />and Navigation Hub
             </h1>
             <p className="mt-6 text-xl md:text-2xl text-foreground max-w-lg leading-relaxed">
-              Organize health records and navigate complex care — all in one place.
+              Organize health records and navigate complex care — get your care coordination team.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
