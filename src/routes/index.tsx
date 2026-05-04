@@ -251,7 +251,7 @@ function Index() {
         </div>
       </footer>
 
-      <SignupModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+      <SignupModal isOpen={modalOpen} onClose={() => { setModalOpen(false); setPreSelectedRole(null); }} initialRole={preSelectedRole} />
     </div>
   );
 }
