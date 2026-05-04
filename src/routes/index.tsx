@@ -50,6 +50,10 @@ function Index() {
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
               One place to organize health records, coordinate care, and stay informed — so nothing falls through the cracks.
+            Care Coordination Hub<br />& Care Navigation
+            </h1>
+            <p className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
+              One place to organize health records, coordinate care, and stay informed — so nothing falls through the cracks.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
