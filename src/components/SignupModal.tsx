@@ -80,7 +80,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
               )}
               <div className="flex-1">
                 <p className="text-sm font-medium text-muted-foreground">
-                  Step {step} of 2 — {step === 1 ? "Choose your role" : "Create account"}
+                  {step === 2 ? "Step 2 of 2 — Create account" : ""}
                 </p>
               </div>
               <button
