@@ -67,7 +67,7 @@ function Index() {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
             Sign Up
           </h2>
-          <p className="text-center text-muted-foreground mb-14 max-w-xl mx-auto">Choose the role that best describes you to get started.</p>
+          <p className="text-center text-muted-foreground mb-14 max-w-xl mx-auto">Whether you're a patient, a family member, or a care coordinator — start in under 2 minutes.</p>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Patient */}
              <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all text-black">
