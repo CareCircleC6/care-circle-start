@@ -133,7 +133,6 @@ function PrivacyPage() {
             </p>
             <p className="text-black leading-relaxed">
               <strong>Care Circle Global - Privacy Officer</strong><br />
-              Email: privacy@carecircleglobal.com
             </p>
           </section>
         </div>

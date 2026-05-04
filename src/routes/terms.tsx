@@ -148,7 +148,6 @@ function TermsPage() {
             <p className="text-black leading-relaxed">
               If you have questions about these Terms of Service, please contact us:<br /><br />
               <strong>Care Circle Global</strong><br />
-              Email: legal@carecircleglobal.com
             </p>
           </section>
         </div>
