@@ -88,10 +88,9 @@ export function ProfessionalForm({ onSuccess }: { onSuccess: () => void }) {
       <FormField label="Role" error={errors.role?.message} required>
         <select {...register("role")} className={inputClass}>
           <option value="">Select…</option>
-          <option value="nurse">Nurse</option>
           <option value="care_coordinator">Care Coordinator</option>
-          <option value="social_worker">Social Worker</option>
-          <option value="other">Other</option>
+          <option value="navigator">Navigator</option>
+          <option value="care_advocate">Care Advocate</option>
         </select>
       </FormField>
 
