@@ -60,7 +60,7 @@ export function SignupModal({ isOpen, onClose }: SignupModalProps) {
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-label="Sign up for CareCircle"
+            aria-label="Sign up for Care Circle Global"
             initial={{ opacity: 0, y: 40, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 40, scale: 0.97 }}

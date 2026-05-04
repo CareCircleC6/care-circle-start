@@ -17,7 +17,7 @@ const problems = [
 
 const steps = [
   { num: "01", title: "Upload", desc: "Prescriptions, lab results, or voice notes" },
-  { num: "02", title: "Unify", desc: "CareCircle builds one current, accurate health view" },
+  { num: "02", title: "Unify", desc: "Care Circle Global builds one current, accurate health view" },
   { num: "03", title: "Flag", desc: "Drug interactions, missed tests, and care gaps are flagged" },
   { num: "04", title: "Act", desc: "Tasks are assigned, alerts sent, daily briefings generated" },
 ];
@@ -30,7 +30,7 @@ function Index() {
       {/* Nav */}
       <nav className="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="text-xl font-bold text-primary" style={{ fontFamily: "var(--font-display)" }}>CareCircle</span>
+          <span className="text-xl font-bold text-primary" style={{ fontFamily: "var(--font-display)" }}>Care Circle Global</span>
           <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
         </div>
       </nav>
@@ -55,7 +55,7 @@ function Index() {
             </div>
           </div>
           <div className="flex justify-center">
-            <img src={heroImage} alt="CareCircle — connected care illustration" width={560} height={420} className="w-full max-w-md drop-shadow-xl" />
+            <img src={heroImage} alt="Care Circle Global — connected care illustration" width={560} height={420} className="w-full max-w-md drop-shadow-xl" />
           </div>
         </div>
       </section>
@@ -164,7 +164,7 @@ function Index() {
       {/* Footer */}
       <footer className="border-t border-border py-8 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <span className="text-sm text-muted-foreground">© 2026 CareCircle. All rights reserved.</span>
+          <span className="text-sm text-muted-foreground">© 2026 Care Circle Global. All rights reserved.</span>
           <div className="flex gap-6 text-sm text-muted-foreground">
             <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-foreground transition-colors">Terms of Service</a>

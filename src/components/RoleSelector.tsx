@@ -25,7 +25,7 @@ export function RoleSelector({ onSelect }: { onSelect: (role: NonNullable<UserRo
   return (
     <div>
       <h2 className="text-2xl font-bold text-foreground mb-1" style={{ fontFamily: "var(--font-display)" }}>
-        How will you use CareCircle?
+        How will you use Care Circle Global?
       </h2>
       <p className="text-muted-foreground mb-6">Choose the option that best describes you.</p>
       <div className="space-y-3">
