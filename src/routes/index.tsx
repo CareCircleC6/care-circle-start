@@ -123,7 +123,7 @@ function Index() {
             <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-xl mx-auto">
               Whether you're a patient, a family member, or a care professional — start in under 2 minutes.
             </p>
-            <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started — It's Free</Button>
+            <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
           </div>
         </div>
       </section>
