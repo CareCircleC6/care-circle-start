@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SignupModal } from "@/components/SignupModal";
+import { HeartPulse, Users, ClipboardCheck, FileText, Pill, MessageCircle, Zap } from "lucide-react";
 import heroImage from "@/assets/hero-illustration.jpg";
 
 export const Route = createFileRoute("/")({
@@ -9,10 +10,10 @@ export const Route = createFileRoute("/")({
 });
 
 const problems = [
-  { icon: "📄", text: "Health records scattered across WhatsApp, PDFs, and clinic folders" },
-  { icon: "💊", text: "Nobody has the full picture of what medications are active" },
-  { icon: "💬", text: "Coordination happens in group chats — things get missed" },
-  { icon: "⚡", text: "Crises appear without warning because nobody is watching" },
+  { icon: FileText, text: "Health records scattered across WhatsApp, PDFs, and clinic folders" },
+  { icon: Pill, text: "Nobody has the full picture of what medications are active" },
+  { icon: MessageCircle, text: "Coordination happens in group chats — things get missed" },
+  { icon: Zap, text: "Crises appear without warning because nobody is watching" },
 ];
 
 const steps = [
@@ -70,21 +71,27 @@ function Index() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Patient */}
             <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all">
-              <span className="text-4xl mb-4">🫀</span>
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-5">
+                <HeartPulse className="w-8 h-8 text-primary" strokeWidth={1.75} />
+              </div>
               <h3 className="text-xl font-semibold text-foreground mb-2">The Patient</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">Set up care for myself and keep my health records organized in one place.</p>
               <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up</Button>
             </div>
             {/* Family */}
             <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all">
-              <span className="text-4xl mb-4">👨‍👩‍👧</span>
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-5">
+                <Users className="w-8 h-8 text-primary" strokeWidth={1.75} />
+              </div>
               <h3 className="text-xl font-semibold text-foreground mb-2">A Family</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">Coordinate care for a parent or loved one — even from a distance.</p>
               <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up</Button>
             </div>
             {/* Professional */}
             <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all">
-              <span className="text-4xl mb-4">🩺</span>
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-5">
+                <ClipboardCheck className="w-8 h-8 text-primary" strokeWidth={1.75} />
+              </div>
               <h3 className="text-xl font-semibold text-foreground mb-2">A Care Coordinator</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">Register as a nurse or care manager and join our coordinator network.</p>
               <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up</Button>
@@ -153,7 +160,7 @@ function Index() {
           <div className="grid sm:grid-cols-2 gap-6">
             {problems.map((p, i) => (
               <div key={i} className="flex gap-4 p-6 rounded-2xl bg-card border border-border/50 hover:shadow-md transition-shadow">
-                <span className="text-2xl flex-shrink-0">{p.icon}</span>
+                <p.icon className="w-6 h-6 text-primary flex-shrink-0" strokeWidth={2} />
                 <p className="text-foreground leading-relaxed">{p.text}</p>
               </div>
             ))}
