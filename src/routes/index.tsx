@@ -107,7 +107,7 @@ function Index() {
               className="mt-6"
               onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
             >
-              How it works…
+              How it Works
             </Button>
           </div>
           <div className="flex justify-center">
