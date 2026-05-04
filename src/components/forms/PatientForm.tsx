@@ -7,10 +7,12 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 const CONDITION_OPTIONS = [
+  "Hypertension",
+  "High Cholesterol",
+  "Arthritis",
+  "Heart Disease",
   "Diabetes (Type 1)",
   "Diabetes (Type 2)",
-  "Hypertension",
-  "Heart Disease",
   "COPD",
   "Asthma",
   "Chronic Kidney Disease",
@@ -19,7 +21,6 @@ const CONDITION_OPTIONS = [
   "Parkinson's Disease",
   "Multiple Sclerosis",
   "Epilepsy",
-  "Arthritis",
   "Lupus",
   "Crohn's Disease / IBD",
   "Cystic Fibrosis",
