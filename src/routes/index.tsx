@@ -49,6 +49,8 @@ function Index() {
             <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed">
               Organize health records, coordinate with caregivers, and navigate complex care — all in one place.
             </p>
+            <p className="mt-6 text-xl md:text-2xl text-foreground max-w-lg leading-relaxed">
+              Organize health records, coordinate with caregivers, and navigate complex care — all in one place.
             <div className="mt-8 flex flex-wrap gap-4">
               <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
               <Button variant="heroGhost" size="xl" onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}>See How It Works</Button>
