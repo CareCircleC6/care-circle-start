@@ -93,7 +93,7 @@ function Index() {
                  <ClipboardCheck className="w-8 h-8 text-primary" strokeWidth={1.75} />
                </div>
                <h3 className="text-xl font-semibold text-black mb-2">A Care Coordinator</h3>
-               <p className="text-black/70 mb-6 leading-relaxed">Register as a nurse or care manager and join our coordinator network.</p>
+              <p className="text-black/70 mb-6 leading-relaxed">Register as a nurse, navigator or care coordinator and join our coordinator network.</p>
               <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as a Care Coordinator</Button>
             </div>
           </div>
