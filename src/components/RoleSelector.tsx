@@ -1,12 +1,12 @@
  import type { UserRole } from "./SignupModal";
- import { HeartPulse, Users, ClipboardCheck } from "lucide-react";
+import { User, Users, ClipboardCheck } from "lucide-react";
 
 const roles = [
   {
     id: "patient" as const,
     title: "I am the Patient",
     description: "Set up care for myself",
-     icon: HeartPulse,
+     icon: User,
   },
   {
     id: "family" as const,
