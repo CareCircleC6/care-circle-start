@@ -121,7 +121,7 @@ function Index() {
                     value={heroRole}
                     onChange={(e) => setHeroRole(e.target.value)}
                     required
-                    className="w-full h-12 px-4 rounded-xl border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                    className="w-full h-12 px-4 rounded-lg border-[1.5px] border-gray-300 bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
                   >
                     <option value="">Select...</option>
                     <option value="patient">A Patient</option>
@@ -138,7 +138,7 @@ function Index() {
                       value={heroFirstName}
                       onChange={(e) => setHeroFirstName(e.target.value)}
                       required
-                      className="w-full h-12 px-4 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                      className="w-full h-12 px-4 rounded-lg border-[1.5px] border-gray-300 bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
                       placeholder="First name"
                     />
                   </div>
@@ -149,7 +149,7 @@ function Index() {
                       value={heroLastName}
                       onChange={(e) => setHeroLastName(e.target.value)}
                       required
-                      className="w-full h-12 px-4 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                      className="w-full h-12 px-4 rounded-lg border-[1.5px] border-gray-300 bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
                       placeholder="Last name"
                     />
                   </div>
@@ -162,7 +162,7 @@ function Index() {
                     value={heroEmail}
                     onChange={(e) => setHeroEmail(e.target.value)}
                     required
-                    className="w-full h-12 px-4 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                    className="w-full h-12 px-4 rounded-lg border-[1.5px] border-gray-300 bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -175,7 +175,7 @@ function Index() {
                     onChange={(e) => setHeroPassword(e.target.value)}
                     required
                     minLength={8}
-                    className="w-full h-12 px-4 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                    className="w-full h-12 px-4 rounded-lg border-[1.5px] border-gray-300 bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
                     placeholder="Min 8 characters"
                   />
                 </div>
