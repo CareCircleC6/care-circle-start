@@ -10,11 +10,22 @@ export type UserRole = "patient" | "family" | "professional" | null;
 interface SignupModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialRole?: UserRole;
 }
 
-export function SignupModal({ isOpen, onClose }: SignupModalProps) {
+export function SignupModal({ isOpen, onClose, initialRole }: SignupModalProps) {
   const [role, setRole] = useState<UserRole>(null);
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (isOpen && initialRole) {
+      setRole(initialRole);
+    }
+    if (!isOpen) {
+      setRole(null);
+      setSubmitted(false);
+    }
+  }, [isOpen, initialRole]);
 
   const step = role ? 2 : 1;
 

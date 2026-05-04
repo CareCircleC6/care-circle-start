@@ -1,9 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { SignupModal } from "@/components/SignupModal";
-import { User, Users, ClipboardCheck, FileText, Pill, MessageCircle, Zap } from "lucide-react";
-import heroImage from "@/assets/hero-illustration.jpg";
+import { SignupModal, type UserRole } from "@/components/SignupModal";
+import { User, Users, ClipboardCheck, FileText, Pill, MessageCircle, Zap, Lock } from "lucide-react";
 import logoImage from "@/assets/logo-new.png";
 
 export const Route = createFileRoute("/")({
@@ -26,6 +25,12 @@ const steps = [
 
 function Index() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [preSelectedRole, setPreSelectedRole] = useState<NonNullable<UserRole> | null>(null);
+
+  const handleHeroRoleSelect = (role: NonNullable<UserRole>) => {
+    setPreSelectedRole(role);
+    setModalOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -51,7 +56,7 @@ function Index() {
       </nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 md:pt-44 md:pb-36 px-6 overflow-hidden">
+      <section className="pt-28 pb-16 md:pt-36 md:pb-28 px-6 overflow-hidden">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-[#3B82F6] text-sm font-medium mb-6 italic">
@@ -64,13 +69,64 @@ function Index() {
             <p className="mt-6 text-xl md:text-2xl text-black max-w-lg leading-snug">
               Know what's happening and what to do next - <span className="font-semibold">get and equip your care coordination team.</span>
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
-              <Button variant="heroGhost" size="xl" onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}>How It Works</Button>
-            </div>
           </div>
           <div className="flex justify-center">
-            <img src={heroImage} alt="Care Circle Global - connected care illustration" width={560} height={420} className="w-full max-w-md drop-shadow-xl" />
+            <div className="w-full max-w-md bg-card rounded-2xl shadow-2xl border border-border/50 p-6 md:p-8">
+              <h2 className="text-lg font-bold text-foreground mb-1" style={{ fontFamily: "var(--font-display)" }}>
+                Get Started
+              </h2>
+              <p className="text-sm text-muted-foreground mb-5">
+                We just need a few details to begin. It takes under 2 minutes.
+              </p>
+
+              <div className="space-y-3 mb-6">
+                <p className="text-sm font-semibold text-foreground">Who are you signing up as?</p>
+                <button
+                  onClick={() => handleHeroRoleSelect("patient")}
+                  className="w-full flex items-center gap-3 p-3.5 rounded-xl border border-border bg-background hover:border-primary/50 hover:bg-primary/5 transition-all text-left group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <User className="w-5 h-5 text-primary" strokeWidth={1.75} />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">I am the Patient</p>
+                    <p className="text-xs text-muted-foreground">Set up care for myself</p>
+                  </div>
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className="text-muted-foreground group-hover:text-primary transition-colors"><path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </button>
+                <button
+                  onClick={() => handleHeroRoleSelect("family")}
+                  className="w-full flex items-center gap-3 p-3.5 rounded-xl border border-border bg-background hover:border-primary/50 hover:bg-primary/5 transition-all text-left group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-primary" strokeWidth={1.75} />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">I am a Family Member</p>
+                    <p className="text-xs text-muted-foreground">Coordinate care for a loved one</p>
+                  </div>
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className="text-muted-foreground group-hover:text-primary transition-colors"><path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </button>
+                <button
+                  onClick={() => handleHeroRoleSelect("professional")}
+                  className="w-full flex items-center gap-3 p-3.5 rounded-xl border border-border bg-background hover:border-primary/50 hover:bg-primary/5 transition-all text-left group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <ClipboardCheck className="w-5 h-5 text-primary" strokeWidth={1.75} />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">I am a Professional</p>
+                    <p className="text-xs text-muted-foreground">Register as a care coordinator</p>
+                  </div>
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className="text-muted-foreground group-hover:text-primary transition-colors"><path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </button>
+              </div>
+
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Lock className="w-3.5 h-3.5" />
+                <span>All information you share is secure and HIPAA-compliant</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -193,7 +249,7 @@ function Index() {
         </div>
       </footer>
 
-      <SignupModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+      <SignupModal isOpen={modalOpen} onClose={() => { setModalOpen(false); setPreSelectedRole(null); }} initialRole={preSelectedRole} />
     </div>
   );
 }
