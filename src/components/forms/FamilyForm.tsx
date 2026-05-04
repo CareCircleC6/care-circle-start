@@ -87,11 +87,11 @@ export function FamilyForm({ onSuccess }: { onSuccess: () => void }) {
       </FormField>
 
       <FormField label="Patient Conditions">
-        <input {...register("patientConditions")} className={inputClass} placeholder="Optional — can be added later" />
+        <input {...register("patientConditions")} className={inputClass} placeholder="Optional - can be added later" />
       </FormField>
 
       <FormField label="Patient Medications">
-        <textarea {...register("patientMedications")} className={inputClass + " h-auto py-3 min-h-[80px] resize-y"} placeholder="Optional — can be added later" />
+        <textarea {...register("patientMedications")} className={inputClass + " h-auto py-3 min-h-[80px] resize-y"} placeholder="Optional - can be added later" />
       </FormField>
 
       <Button type="submit" variant="hero" size="xl" className="w-full mt-2" disabled={isSubmitting}>

@@ -13,15 +13,15 @@ export const Route = createFileRoute("/")({
 const problems = [
   { icon: FileText, text: "Health records scattered across WhatsApp, PDFs, and clinic folders" },
   { icon: Pill, text: "Nobody has the full picture of what medications are active" },
-  { icon: MessageCircle, text: "Coordination happens in group chats — things get missed" },
+  { icon: MessageCircle, text: "Coordination happens in group chats - things get missed" },
   { icon: Zap, text: "Crises appear without warning because nobody is watching" },
 ];
 
 const steps = [
   { num: "01", title: "On-board", desc: "Sign up and add your prescriptions, lab results, images, notes, or your voice memos." },
-  { num: "02", title: "Organize", desc: "We build a single, up-to-date health profile so every provider, family member, and coordinator sees the same complete picture — no more scattered files." },
+  { num: "02", title: "Organize", desc: "We build a single, up-to-date health profile so every provider, family member, and coordinator sees the same complete picture - no more scattered files." },
   { num: "03", title: "Auto-Monitor", desc: "Smart alerts flag missed appointments, skipped medications, drug interactions, overdue labs, and care gaps before they become emergencies." },
-  { num: "04", title: "Coordinate", desc: "Your care team receives assigned tasks, real-time notifications, and daily briefings — so everyone stays aligned and nothing falls through the cracks." },
+  { num: "04", title: "Coordinate", desc: "Your care team receives assigned tasks, real-time notifications, and daily briefings - so everyone stays aligned and nothing falls through the cracks." },
 ];
 
 function Index() {
@@ -63,7 +63,7 @@ function Index() {
               Care Coordination<br />and Navigation Hub
             </h1>
             <p className="mt-6 text-xl md:text-2xl text-black max-w-lg leading-snug">
-              Organize health records and navigate complex care — get your care coordination team.
+              Organize health records and navigate complex care - get your care coordination team.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
@@ -71,7 +71,7 @@ function Index() {
             </div>
           </div>
           <div className="flex justify-center">
-            <img src={heroImage} alt="Care Circle Global — connected care illustration" width={560} height={420} className="w-full max-w-md drop-shadow-xl" />
+            <img src={heroImage} alt="Care Circle Global - connected care illustration" width={560} height={420} className="w-full max-w-md drop-shadow-xl" />
           </div>
         </div>
       </section>
@@ -82,7 +82,7 @@ function Index() {
           <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
             Sign Up
           </h2>
-          <p className="text-center text-black text-lg mb-14 max-w-xl mx-auto">Whether you're a patient, a family member, or a care coordinator — start in under 2 minutes.</p>
+          <p className="text-center text-black text-lg mb-14 max-w-xl mx-auto">Whether you're a patient, a family member, or a care coordinator - start in under 2 minutes.</p>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Patient */}
              <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all text-black">
@@ -99,7 +99,7 @@ function Index() {
                  <Users className="w-8 h-8 text-primary" strokeWidth={1.75} />
                </div>
                <h3 className="text-xl font-semibold text-black mb-2">A Family</h3>
-                <p className="text-black mb-6 leading-relaxed">Coordinate care for a parent or loved one — even from a distance.</p>
+                <p className="text-black mb-6 leading-relaxed">Coordinate care for a parent or loved one - even from a distance.</p>
               <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as a Family</Button>
             </div>
             {/* Professional */}
@@ -143,9 +143,9 @@ function Index() {
               HIPAA-grade privacy controls
             </div>
              <blockquote className="text-xl md:text-2xl text-black font-medium leading-relaxed italic max-w-2xl mx-auto">
-              "Finally, one place where I can see everything about my mother's care — even from 3,000 miles away."
+              "Finally, one place where I can see everything about my mother's care - even from 3,000 miles away."
             </blockquote>
-             <p className="mt-4 text-black">— Early beta participant</p>
+             <p className="mt-4 text-black">- Early beta participant</p>
           </div>
         </div>
       </section>
@@ -158,7 +158,7 @@ function Index() {
               Ready to bring care together?
             </h2>
              <p className="text-xl md:text-2xl text-black mb-10 max-w-xl mx-auto">
-              Whether you're a patient, a family member, or a care coordinator — start in under 2 minutes.
+              Whether you're a patient, a family member, or a care coordinator - start in under 2 minutes.
             </p>
             <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
           </div>
