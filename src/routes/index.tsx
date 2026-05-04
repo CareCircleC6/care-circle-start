@@ -60,24 +60,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Problem */}
-      <section className="py-20 md:py-28 px-6 bg-muted/40">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
-            Sound familiar?
-          </h2>
-          <p className="text-center text-muted-foreground mb-14 max-w-xl mx-auto">Families dealing with chronic or complex care face these problems every day.</p>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {problems.map((p, i) => (
-              <div key={i} className="flex gap-4 p-6 rounded-2xl bg-card border border-border/50 hover:shadow-md transition-shadow">
-                <span className="text-2xl flex-shrink-0">{p.icon}</span>
-                <p className="text-foreground leading-relaxed">{p.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* How It Works */}
       <section id="how-it-works" className="py-20 md:py-28 px-6">
         <div className="max-w-5xl mx-auto">
@@ -157,6 +139,24 @@ function Index() {
               Whether you're a patient, a family member, or a care coordinator — start in under 2 minutes.
             </p>
             <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Problem */}
+      <section className="py-20 md:py-28 px-6 bg-muted/40">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
+            Sound familiar?
+          </h2>
+          <p className="text-center text-muted-foreground mb-14 max-w-xl mx-auto">Families dealing with chronic or complex care face these problems every day.</p>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {problems.map((p, i) => (
+              <div key={i} className="flex gap-4 p-6 rounded-2xl bg-card border border-border/50 hover:shadow-md transition-shadow">
+                <span className="text-2xl flex-shrink-0">{p.icon}</span>
+                <p className="text-foreground leading-relaxed">{p.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
