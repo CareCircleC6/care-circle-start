@@ -47,6 +47,8 @@ function Index() {
               Your Care<br />Coordination Hub
             & Care Navigation
             </h1>
+              Care Coordination<br />and Navigation Hub
+            </h1>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed">
               Organize health records, coordinate with caregivers, and navigate complex care — all in one place.
             </p>
