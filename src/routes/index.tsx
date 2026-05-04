@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { SignupModal } from "@/components/SignupModal";
 import heroImage from "@/assets/hero-illustration.jpg";
@@ -8,11 +7,6 @@ import heroImage from "@/assets/hero-illustration.jpg";
 export const Route = createFileRoute("/")({
   component: Index,
 });
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } }),
-};
 
 const problems = [
   { icon: "📄", text: "Health records scattered across WhatsApp, PDFs, and clinic folders" },
@@ -30,6 +24,11 @@ const steps = [
 
 function Index() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -42,38 +41,43 @@ function Index() {
       </nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-32 px-6">
+      <section className="pt-32 pb-20 md:pt-44 md:pb-36 px-6 overflow-hidden">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-              Care Coordination Hub<br />& Care Navigation
+          <div className={`transition-all duration-700 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              Now accepting early access signups
+            </div>
+            <h1 className="text-4xl md:text-[3.5rem] lg:text-6xl font-bold text-foreground leading-[1.1] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
+              Your Care<br />Coordination Hub
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
-              One place to organize health records, coordinate care, and stay informed — so nothing falls through the cracks.
+            <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed">
+              Organize health records, coordinate with caregivers, and navigate complex care — all in one place.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
               <Button variant="heroGhost" size="xl" onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}>See How It Works</Button>
             </div>
-          </motion.div>
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={2} className="flex justify-center">
-            <img src={heroImage} alt="CareCircle — connected care illustration" width={560} height={420} className="w-full max-w-md" />
-          </motion.div>
+          </div>
+          <div className={`flex justify-center transition-all duration-700 delay-200 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <img src={heroImage} alt="CareCircle — connected care illustration" width={560} height={420} className="w-full max-w-md drop-shadow-xl" />
+          </div>
         </div>
       </section>
 
       {/* Problem */}
-      <section className="py-20 md:py-28 px-6 bg-secondary/50">
+      <section className="py-20 md:py-28 px-6 bg-muted/40">
         <div className="max-w-5xl mx-auto">
-          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0} className="text-3xl md:text-4xl font-bold text-foreground text-center mb-16" style={{ fontFamily: "var(--font-display)" }}>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
             Sound familiar?
-          </motion.h2>
+          </h2>
+          <p className="text-center text-muted-foreground mb-14 max-w-xl mx-auto">Families dealing with chronic or complex care face these problems every day.</p>
           <div className="grid sm:grid-cols-2 gap-6">
             {problems.map((p, i) => (
-              <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i + 1} className="flex gap-4 p-6 rounded-2xl bg-card border border-border/50">
+              <div key={i} className="flex gap-4 p-6 rounded-2xl bg-card border border-border/50 hover:shadow-md transition-shadow">
                 <span className="text-2xl flex-shrink-0">{p.icon}</span>
                 <p className="text-foreground leading-relaxed">{p.text}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -82,25 +86,26 @@ function Index() {
       {/* How It Works */}
       <section id="how-it-works" className="py-20 md:py-28 px-6">
         <div className="max-w-5xl mx-auto">
-          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0} className="text-3xl md:text-4xl font-bold text-foreground text-center mb-16" style={{ fontFamily: "var(--font-display)" }}>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
             How CareCircle works
-          </motion.h2>
+          </h2>
+          <p className="text-center text-muted-foreground mb-14 max-w-xl mx-auto">Four simple steps to organized, worry-free care.</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((s, i) => (
-              <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i + 1} className="text-center">
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-lg font-bold mx-auto mb-4">{s.num}</div>
+              <div key={i} className="text-center group">
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-lg font-bold mx-auto mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">{s.num}</div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">{s.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Social Proof */}
-      <section className="py-20 md:py-28 px-6 bg-secondary/50">
+      <section className="py-20 md:py-28 px-6 bg-muted/40">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0}>
+          <div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L10.163 5.279L15 5.979L11.5 9.221L12.326 14L8 11.779L3.674 14L4.5 9.221L1 5.979L5.837 5.279L8 1Z" fill="currentColor"/></svg>
               HIPAA-grade privacy controls
@@ -109,22 +114,22 @@ function Index() {
               "Finally, one place where I can see everything about my mother's care — even from 3,000 miles away."
             </blockquote>
             <p className="mt-4 text-muted-foreground">— Early beta participant</p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-24 md:py-32 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0}>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6" style={{ fontFamily: "var(--font-display)" }}>
+          <div>
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6" style={{ fontFamily: "var(--font-display)" }}>
               Ready to bring care together?
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-xl mx-auto">
               Whether you're a patient, a family member, or a care professional — start in under 2 minutes.
             </p>
             <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started — It's Free</Button>
-          </motion.div>
+          </div>
         </div>
       </section>
 
