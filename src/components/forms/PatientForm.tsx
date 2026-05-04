@@ -5,6 +5,34 @@ import { FormField } from "./FormField";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
+const CONDITION_OPTIONS = [
+  "Diabetes (Type 1)",
+  "Diabetes (Type 2)",
+  "Hypertension",
+  "Heart Disease",
+  "COPD",
+  "Asthma",
+  "Chronic Kidney Disease",
+  "Cancer",
+  "Alzheimer's / Dementia",
+  "Parkinson's Disease",
+  "Multiple Sclerosis",
+  "Epilepsy",
+  "Arthritis",
+  "Lupus",
+  "Crohn's Disease / IBD",
+  "Cystic Fibrosis",
+  "Sickle Cell Disease",
+  "HIV / AIDS",
+  "Hepatitis",
+  "Stroke Recovery",
+  "Depression / Anxiety",
+  "Autism Spectrum Disorder",
+  "Down Syndrome",
+  "Cerebral Palsy",
+  "Rare / Undiagnosed Condition",
+];
+
 const schema = z.object({
   fullName: z.string().min(2, "Name is required"),
   email: z.string().email("Enter a valid email address"),
@@ -13,7 +41,8 @@ const schema = z.object({
   dob: z.string().min(1, "Date of birth is required"),
   city: z.string().min(1, "City is required"),
   gender: z.string().optional(),
-  conditions: z.string().optional(),
+  conditions: z.array(z.string()).optional(),
+  otherCondition: z.string().optional(),
   addFamily: z.boolean().optional(),
   familyName: z.string().optional(),
   familyContact: z.string().optional(),
@@ -23,7 +52,9 @@ type PatientData = z.infer<typeof schema>;
 
 export function PatientForm({ onSuccess }: { onSuccess: () => void }) {
   const [showPassword, setShowPassword] = useState(false);
-  const { register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm<PatientData>({
+  const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
+  const [showOther, setShowOther] = useState(false);
+  const { register, handleSubmit, watch, setValue, formState: { errors, isSubmitting } } = useForm<PatientData>({
     resolver: zodResolver(schema),
   });
 
@@ -79,8 +110,42 @@ export function PatientForm({ onSuccess }: { onSuccess: () => void }) {
         </select>
       </FormField>
 
-      <FormField label="Known Conditions" error={errors.conditions?.message}>
-        <input {...register("conditions")} className={inputClass} placeholder="E.g. diabetes, hypertension (optional)" />
+      <FormField label="Known Conditions (select all that apply)" error={errors.conditions?.message}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-48 overflow-y-auto rounded-xl border border-input bg-background p-3">
+          {CONDITION_OPTIONS.map((condition) => (
+            <label key={condition} className="flex items-center gap-2 text-sm text-foreground cursor-pointer hover:text-primary transition-colors">
+              <input
+                type="checkbox"
+                className="w-4 h-4 rounded border-input accent-primary"
+                checked={selectedConditions.includes(condition)}
+                onChange={(e) => {
+                  const updated = e.target.checked
+                    ? [...selectedConditions, condition]
+                    : selectedConditions.filter((c) => c !== condition);
+                  setSelectedConditions(updated);
+                  setValue("conditions", updated);
+                }}
+              />
+              {condition}
+            </label>
+          ))}
+          <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer hover:text-primary transition-colors">
+            <input
+              type="checkbox"
+              className="w-4 h-4 rounded border-input accent-primary"
+              checked={showOther}
+              onChange={(e) => setShowOther(e.target.checked)}
+            />
+            Other
+          </label>
+        </div>
+        {showOther && (
+          <input
+            {...register("otherCondition")}
+            className={inputClass + " mt-2"}
+            placeholder="Please specify your condition(s)"
+          />
+        )}
       </FormField>
 
       <div className="flex items-center gap-3 py-2">
