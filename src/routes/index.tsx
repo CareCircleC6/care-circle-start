@@ -121,8 +121,7 @@ function Index() {
               Ready to bring care together?
             </h2>
             <p className="text-xl md:text-2xl text-foreground mb-10 max-w-xl mx-auto">
-              Whether you're a patient, a family member, or a care professional — start in under 2 minutes.
-            </p>
+              Whether you're a patient, a family member, or a care coordinator — start in under 2 minutes.
             </p>
             <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
           </div>
