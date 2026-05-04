@@ -56,7 +56,7 @@ function Index() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-[#3B82F6] text-sm font-medium mb-6 italic">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span className="animate-pulse">⭐</span>
               Now accepting early access signups
             </div>
             <h1 className="text-4xl md:text-[3.5rem] lg:text-6xl font-bold text-black leading-[0.95] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
