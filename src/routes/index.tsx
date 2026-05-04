@@ -111,8 +111,8 @@ function Index() {
             {steps.map((s, i) => (
               <div key={i} className="text-center group">
                 <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-lg font-bold mx-auto mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">{s.num}</div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{s.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                <h3 className="text-lg font-semibold text-black mb-2">{s.title}</h3>
+                <p className="text-sm text-black/70 leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -161,7 +161,7 @@ function Index() {
             {problems.map((p, i) => (
               <div key={i} className="flex gap-4 p-6 rounded-2xl bg-card border border-border/50 hover:shadow-md transition-shadow">
                 <p.icon className="w-6 h-6 text-primary flex-shrink-0" strokeWidth={2} />
-                <p className="text-foreground leading-relaxed">{p.text}</p>
+                <p className="text-black leading-relaxed">{p.text}</p>
               </div>
             ))}
           </div>
