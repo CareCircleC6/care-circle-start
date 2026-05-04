@@ -36,7 +36,7 @@ function Index() {
              <div className="flex flex-col justify-between" style={{ fontFamily: "var(--font-display)" }}>
                <span className="text-[1.15rem] font-bold leading-none">
                 <span style={{ color: "#1B365D" }}>Care </span>
-                <span style={{ color: "#E87722" }}>Circle</span>
+                 <span style={{ color: "#1B365D" }}>Circle</span>
               </span>
                <span className="text-[1.15rem] font-bold leading-none" style={{ color: "#1B365D" }}>Global</span>
             </div>
