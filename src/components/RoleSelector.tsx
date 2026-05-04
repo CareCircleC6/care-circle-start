@@ -17,7 +17,7 @@ const roles = [
   {
     id: "professional" as const,
     title: "I am a Professional",
-    description: "Register as a nurse or care coordinator",
+    description: "Register as a coordinator or navigator",
      icon: ClipboardCheck,
   },
 ];
