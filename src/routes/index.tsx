@@ -45,6 +45,7 @@ function Index() {
             </div>
             <h1 className="text-4xl md:text-[3.5rem] lg:text-6xl font-bold text-foreground leading-[1.1] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
               Your Care<br />Coordination Hub
+            & Care Navigation
             </h1>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed">
               Organize health records, coordinate with caregivers, and navigate complex care — all in one place.
