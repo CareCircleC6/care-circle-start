@@ -19,7 +19,7 @@ const problems = [
 const steps = [
    { num: "01", title: "On-board", desc: "Upload prescriptions, lab results, or add voice notes" },
    { num: "02", title: "Organize", desc: "Care Circle Global builds one current, accurate health view" },
-   { num: "03", title: "Monitor", desc: "Drug interactions, missed tests, and care gaps are flagged automatically" },
+  { num: "03", title: "Auto-Monitor", desc: "Drug interactions, missed tests, and care gaps are flagged automatically" },
    { num: "04", title: "Coordinate", desc: "Tasks are assigned, alerts sent, and daily briefings keep everyone aligned" },
 ];
 
