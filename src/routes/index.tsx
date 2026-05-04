@@ -55,7 +55,7 @@ function Index() {
       <section className="pt-32 pb-20 md:pt-44 md:pb-36 px-6 overflow-hidden">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-[#3B82F6] text-sm font-medium mb-6 italic">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               Now accepting early access signups
             </div>
