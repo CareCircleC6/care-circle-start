@@ -51,7 +51,7 @@ function Index() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
-              <Button variant="heroGhost" size="xl" onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}>See How It Works</Button>
+              <Button variant="heroGhost" size="xl" onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}>How It Works</Button>
             </div>
           </div>
           <div className="flex justify-center">
