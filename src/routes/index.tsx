@@ -101,6 +101,9 @@ function Index() {
             <p className="mt-6 text-xl md:text-2xl text-black max-w-lg leading-snug">
               Know what's happening and what to do next - <span className="font-semibold">get and equip your care coordination team.</span>
             </p>
+            <a href="#how-it-works">
+              <Button variant="heroGhost" size="xl" className="mt-6">How it works…</Button>
+            </a>
           </div>
           <div className="flex justify-center">
             <form onSubmit={handleHeroSubmit} className="w-full max-w-md bg-card rounded-2xl shadow-2xl border border-border/50 p-6 md:p-8">
