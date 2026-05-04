@@ -193,7 +193,7 @@ function Index() {
       <section className="py-20 md:py-28 px-6 bg-muted/40">
         <div className="max-w-4xl mx-auto text-center">
           <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-[#3B82F6] text-sm font-medium mb-8 italic">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L10.163 5.279L15 5.979L11.5 9.221L12.326 14L8 11.779L3.674 14L4.5 9.221L1 5.979L5.837 5.279L8 1Z" fill="currentColor"/></svg>
               HIPAA-grade privacy controls
             </div>
