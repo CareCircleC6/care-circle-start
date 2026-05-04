@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SignupModal } from "@/components/SignupModal";
-import { HeartPulse, Users, ClipboardCheck, FileText, Pill, MessageCircle, Zap } from "lucide-react";
+import { User, Users, ClipboardCheck, FileText, Pill, MessageCircle, Zap } from "lucide-react";
 import heroImage from "@/assets/hero-illustration.jpg";
 
 export const Route = createFileRoute("/")({
@@ -72,7 +72,7 @@ function Index() {
             {/* Patient */}
              <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all text-black">
                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-5">
-                 <HeartPulse className="w-8 h-8 text-primary" strokeWidth={1.75} />
+                 <User className="w-8 h-8 text-primary" strokeWidth={1.75} />
                </div>
                <h3 className="text-xl font-semibold text-black mb-2">The Patient</h3>
                <p className="text-black/70 mb-6 leading-relaxed">Set up care for myself and keep my health records organized in one place.</p>
