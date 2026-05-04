@@ -18,7 +18,7 @@ const problems = [
 ];
 
 const steps = [
-  { num: "01", title: "On-board", desc: "Sign up and add your Prescriptions, lab results, images, notes, or your voice memos." },
+  { num: "01", title: "On-board", desc: "Sign up and add your prescriptions, lab results, images, notes, or your voice memos." },
   { num: "02", title: "Organize", desc: "We build a single, up-to-date health profile so every provider, family member, and coordinator sees the same complete picture — no more scattered files." },
   { num: "03", title: "Auto-Monitor", desc: "Smart alerts flag missed appointments, skipped medications, drug interactions, overdue labs, and care gaps before they become emergencies." },
   { num: "04", title: "Coordinate", desc: "Your care team receives assigned tasks, real-time notifications, and daily briefings — so everyone stays aligned and nothing falls through the cracks." },
