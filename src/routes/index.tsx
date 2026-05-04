@@ -46,11 +46,7 @@ function Index() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
             <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-              Care for your parents,<br />no matter the distance.
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
-              One place to organize health records, coordinate care, and stay informed — so nothing falls through the cracks.
-            Care Coordination Hub<br />& Care Navigation
+              Care Coordination Hub<br />& Care Navigation
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
               One place to organize health records, coordinate care, and stay informed — so nothing falls through the cracks.
