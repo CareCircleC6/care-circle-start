@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { SignupModal, type UserRole } from "@/components/SignupModal";
 import { User, Users, ClipboardCheck, FileText, Pill, MessageCircle, Zap, Lock } from "lucide-react";
@@ -27,8 +27,15 @@ function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [preSelectedRole, setPreSelectedRole] = useState<NonNullable<UserRole> | null>(null);
 
-  const handleHeroRoleSelect = (role: NonNullable<UserRole>) => {
-    setPreSelectedRole(role);
+  const [heroRole, setHeroRole] = useState("");
+  const [heroFirstName, setHeroFirstName] = useState("");
+  const [heroLastName, setHeroLastName] = useState("");
+  const [heroEmail, setHeroEmail] = useState("");
+
+  const handleHeroSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!heroRole) return;
+    setPreSelectedRole(heroRole as NonNullable<UserRole>);
     setModalOpen(true);
   };
 
@@ -71,7 +78,7 @@ function Index() {
             </p>
           </div>
           <div className="flex justify-center">
-            <div className="w-full max-w-md bg-card rounded-2xl shadow-2xl border border-border/50 p-6 md:p-8">
+            <form onSubmit={handleHeroSubmit} className="w-full max-w-md bg-card rounded-2xl shadow-2xl border border-border/50 p-6 md:p-8">
               <h2 className="text-lg font-bold text-foreground mb-1" style={{ fontFamily: "var(--font-display)" }}>
                 Get Started
               </h2>
@@ -79,54 +86,69 @@ function Index() {
                 We just need a few details to begin. It takes under 2 minutes.
               </p>
 
-              <div className="space-y-3 mb-6">
-                <p className="text-sm font-semibold text-foreground">Who are you signing up as?</p>
-                <button
-                  onClick={() => handleHeroRoleSelect("patient")}
-                  className="w-full flex items-center gap-3 p-3.5 rounded-xl border border-border bg-background hover:border-primary/50 hover:bg-primary/5 transition-all text-left group"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <User className="w-5 h-5 text-primary" strokeWidth={1.75} />
+              <div className="space-y-4 mb-6">
+                <div>
+                  <label className="block text-sm font-semibold text-foreground mb-1.5">I am signing up as<span className="text-destructive">*</span></label>
+                  <select
+                    value={heroRole}
+                    onChange={(e) => setHeroRole(e.target.value)}
+                    required
+                    className="w-full h-12 px-4 rounded-xl border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                  >
+                    <option value="">Select...</option>
+                    <option value="patient">A Patient</option>
+                    <option value="family">A Family Member</option>
+                    <option value="professional">A Care Coordinator</option>
+                  </select>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-sm font-semibold text-foreground mb-1.5">First Name<span className="text-destructive">*</span></label>
+                    <input
+                      type="text"
+                      value={heroFirstName}
+                      onChange={(e) => setHeroFirstName(e.target.value)}
+                      required
+                      className="w-full h-12 px-4 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                      placeholder="First name"
+                    />
                   </div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">I am the Patient</p>
-                    <p className="text-xs text-muted-foreground">Set up care for myself</p>
+                  <div>
+                    <label className="block text-sm font-semibold text-foreground mb-1.5">Last Name<span className="text-destructive">*</span></label>
+                    <input
+                      type="text"
+                      value={heroLastName}
+                      onChange={(e) => setHeroLastName(e.target.value)}
+                      required
+                      className="w-full h-12 px-4 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                      placeholder="Last name"
+                    />
                   </div>
-                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className="text-muted-foreground group-hover:text-primary transition-colors"><path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </button>
-                <button
-                  onClick={() => handleHeroRoleSelect("family")}
-                  className="w-full flex items-center gap-3 p-3.5 rounded-xl border border-border bg-background hover:border-primary/50 hover:bg-primary/5 transition-all text-left group"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-primary" strokeWidth={1.75} />
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">I am a Family Member</p>
-                    <p className="text-xs text-muted-foreground">Coordinate care for a loved one</p>
-                  </div>
-                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className="text-muted-foreground group-hover:text-primary transition-colors"><path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </button>
-                <button
-                  onClick={() => handleHeroRoleSelect("professional")}
-                  className="w-full flex items-center gap-3 p-3.5 rounded-xl border border-border bg-background hover:border-primary/50 hover:bg-primary/5 transition-all text-left group"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <ClipboardCheck className="w-5 h-5 text-primary" strokeWidth={1.75} />
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">I am a Professional</p>
-                    <p className="text-xs text-muted-foreground">Register as a care coordinator</p>
-                  </div>
-                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className="text-muted-foreground group-hover:text-primary transition-colors"><path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </button>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-foreground mb-1.5">Email<span className="text-destructive">*</span></label>
+                  <input
+                    type="email"
+                    value={heroEmail}
+                    onChange={(e) => setHeroEmail(e.target.value)}
+                    required
+                    className="w-full h-12 px-4 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                    placeholder="you@example.com"
+                  />
+                </div>
+
+                <Button type="submit" variant="hero" size="xl" className="w-full">
+                  Get Started
+                </Button>
               </div>
 
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <Lock className="w-3.5 h-3.5" />
                 <span>All information you share is secure and HIPAA-compliant</span>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </section>
