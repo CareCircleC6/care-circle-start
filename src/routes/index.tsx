@@ -98,7 +98,7 @@ function Index() {
             <h1 className="text-4xl md:text-[3.5rem] lg:text-6xl font-bold text-black leading-[0.95] tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
               Care Coordination<br />and Navigation Hub
             </h1>
-            <p className="mt-6 text-xl md:text-2xl text-black max-w-lg leading-snug">
+            <p className="mt-6 text-lg md:text-xl text-black max-w-lg leading-tight">
               Know what's happening and what to do next - <span className="font-semibold">get and equip your care coordination team.</span>
             </p>
             <Button
