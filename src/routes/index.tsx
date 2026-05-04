@@ -91,7 +91,7 @@ function Index() {
       <section className="pt-28 pb-16 md:pt-36 md:pb-28 px-6 overflow-hidden">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-[#3B82F6] text-sm font-medium mb-6 italic">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-[#3B82F6] text-sm font-medium mb-4 italic">
               <span className="animate-pulse">★</span>
               Now accepting early access signups
             </div>
