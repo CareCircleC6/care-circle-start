@@ -78,7 +78,7 @@ function Index() {
       {/* Sign Up */}
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
+          <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
             Sign Up
           </h2>
           <p className="text-center text-foreground text-lg mb-14 max-w-xl mx-auto">Whether you're a patient, a family member, or a care coordinator — start in under 2 minutes.</p>
@@ -120,13 +120,13 @@ function Index() {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
             How it works
           </h2>
-          <p className="text-center text-muted-foreground mb-14 max-w-xl mx-auto">Four simple steps to start your care team.</p>
+          <p className="text-center text-black mb-14 max-w-xl mx-auto">Four simple steps to start your care team.</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((s, i) => (
               <div key={i} className="text-center group">
                 <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center text-lg font-bold mx-auto mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">{s.num}</div>
                 <h3 className="text-lg font-semibold text-black mb-2">{s.title}</h3>
-                <p className="text-sm text-black/70 leading-relaxed">{s.desc}</p>
+                <p className="text-sm text-black leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
