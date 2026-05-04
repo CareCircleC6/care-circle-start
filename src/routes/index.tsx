@@ -112,12 +112,9 @@ function Index() {
           </div>
           <div className="flex justify-center">
             <form onSubmit={handleHeroSubmit} className="w-full max-w-md bg-card rounded-2xl shadow-2xl border border-border/50 p-6 md:p-8">
-              <h2 className="text-lg font-bold text-foreground mb-1" style={{ fontFamily: "var(--font-display)" }}>
+              <h2 className="text-lg font-bold text-foreground mb-5" style={{ fontFamily: "var(--font-display)" }}>
                 Get Started
               </h2>
-              <p className="text-sm text-muted-foreground mb-5">
-                We just need a few details to begin. It takes under 2 minutes.
-              </p>
 
               <div className="space-y-4 mb-6">
                 <div>
