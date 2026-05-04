@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { SignupModal, type UserRole } from "@/components/SignupModal";
 import { User, Users, ClipboardCheck, FileText, Pill, MessageCircle, Zap, Lock } from "lucide-react";
 import logoImage from "@/assets/logo-new.png";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -31,12 +32,36 @@ function Index() {
   const [heroFirstName, setHeroFirstName] = useState("");
   const [heroLastName, setHeroLastName] = useState("");
   const [heroEmail, setHeroEmail] = useState("");
+  const [heroPassword, setHeroPassword] = useState("");
+  const [signupLoading, setSignupLoading] = useState(false);
+  const [signupError, setSignupError] = useState("");
+  const [signupSuccess, setSignupSuccess] = useState(false);
 
-  const handleHeroSubmit = (e: FormEvent) => {
+  const handleHeroSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!heroRole) return;
-    setPreSelectedRole(heroRole as NonNullable<UserRole>);
-    setModalOpen(true);
+    setSignupLoading(true);
+    setSignupError("");
+
+    const { error } = await supabase.auth.signUp({
+      email: heroEmail,
+      password: heroPassword,
+      options: {
+        emailRedirectTo: `${window.location.origin}/complete-profile`,
+        data: {
+          first_name: heroFirstName,
+          last_name: heroLastName,
+          role: heroRole,
+        },
+      },
+    });
+
+    if (error) {
+      setSignupError(error.message);
+    } else {
+      setSignupSuccess(true);
+    }
+    setSignupLoading(false);
   };
 
   return (
@@ -139,9 +164,33 @@ function Index() {
                   />
                 </div>
 
+                <div>
+                  <label className="block text-sm font-semibold text-foreground mb-1.5">Password<span className="text-destructive">*</span></label>
+                  <input
+                    type="password"
+                    value={heroPassword}
+                    onChange={(e) => setHeroPassword(e.target.value)}
+                    required
+                    minLength={8}
+                    className="w-full h-12 px-4 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                    placeholder="Min 8 characters"
+                  />
+                </div>
+
+                {signupError && (
+                  <p className="text-sm text-destructive">{signupError}</p>
+                )}
+
+                {signupSuccess ? (
+                  <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-center">
+                    <p className="text-green-800 font-semibold">Check your email!</p>
+                    <p className="text-green-700 text-sm mt-1">We sent a verification link to <strong>{heroEmail}</strong>. Click it to continue setting up your profile.</p>
+                  </div>
+                ) : (
                 <Button type="submit" variant="hero" size="xl" className="w-full">
-                  Get Started
+                  {signupLoading ? "Creating account…" : "Get Started"}
                 </Button>
+                )}
               </div>
 
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
