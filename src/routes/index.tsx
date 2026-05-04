@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { SignupModal } from "@/components/SignupModal";
 import { User, Users, ClipboardCheck, FileText, Pill, MessageCircle, Zap } from "lucide-react";
 import heroImage from "@/assets/hero-illustration.jpg";
-import logoImage from "@/assets/logo.png";
+import logoImage from "@/assets/logo-new.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
