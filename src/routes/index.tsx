@@ -84,7 +84,7 @@ function Index() {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-4" style={{ fontFamily: "var(--font-display)" }}>
             How it works
           </h2>
-          <p className="text-center text-muted-foreground mb-14 max-w-xl mx-auto">Four simple steps to organized, worry-free care.</p>
+          <p className="text-center text-muted-foreground mb-14 max-w-xl mx-auto">Four simple steps to start your care team.</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((s, i) => (
               <div key={i} className="text-center group">
