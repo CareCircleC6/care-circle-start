@@ -4,6 +4,7 @@ import { z } from "zod";
 import { FormField } from "./FormField";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const schema = z.object({
   fullName: z.string().min(2, "Name is required"),
@@ -28,8 +29,22 @@ export function FamilyForm({ onSuccess }: { onSuccess: () => void }) {
   });
 
   const onSubmit = async (data: FamilyData) => {
-    console.log("Family signup:", data);
-    await new Promise(r => setTimeout(r, 800));
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+    const { error } = await supabase
+      .from("profiles")
+      .update({
+        phone: data.phone,
+        country: data.country,
+        profile_completed: true,
+      })
+      .eq("user_id", user.id);
+
+    if (error) {
+      console.error("Profile update error:", error);
+      return;
+    }
     onSuccess();
   };
 
