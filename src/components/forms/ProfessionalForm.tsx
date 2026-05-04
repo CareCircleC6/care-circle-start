@@ -61,7 +61,7 @@ export function ProfessionalForm({ onSuccess }: { onSuccess: () => void }) {
         <select {...register("role")} className={inputClass}>
           <option value="">Select…</option>
           <option value="nurse">Nurse</option>
-          <option value="care_manager">Care Manager</option>
+          <option value="care_coordinator">Care Coordinator</option>
           <option value="social_worker">Social Worker</option>
           <option value="other">Other</option>
         </select>
