@@ -34,12 +34,12 @@ function Index() {
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img src={logoImage} alt="Care Circle Global" className="h-10 w-10 flex-shrink-0" />
-            <div className="flex flex-col justify-between h-10 py-[1px]" style={{ fontFamily: "var(--font-display)" }}>
-              <span className="text-[1.05rem] font-bold leading-none">
+             <div className="flex flex-col justify-between h-10" style={{ fontFamily: "var(--font-display)" }}>
+               <span className="text-[1.15rem] font-bold leading-none">
                 <span style={{ color: "#1B365D" }}>Care </span>
                 <span style={{ color: "#E87722" }}>Circle</span>
               </span>
-              <span className="text-[1.05rem] font-bold leading-none" style={{ color: "#1B365D" }}>Global</span>
+               <span className="text-[1.15rem] font-bold leading-none" style={{ color: "#1B365D" }}>Global</span>
             </div>
           </div>
           <div className="flex items-center gap-3">
