@@ -37,6 +37,8 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "CareCircle — Care Coordination Made Simple" },
+      { name: "twitter:description", content: "Organize health records, coordinate care, and stay informed — so nothing falls through the cracks." },
     ],
     links: [
       {
