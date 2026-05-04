@@ -39,6 +39,7 @@ const schema = z.object({
   phone: z.string().min(6, "Enter a valid phone number"),
   password: z.string().min(8, "Password must be at least 8 characters"),
   dob: z.string().min(1, "Date of birth is required"),
+  country: z.string().min(1, "Country is required"),
   city: z.string().min(1, "City is required"),
   gender: z.string().optional(),
   conditions: z.array(z.string()).optional(),
@@ -95,6 +96,14 @@ export function PatientForm({ onSuccess }: { onSuccess: () => void }) {
 
       <FormField label="Date of Birth" error={errors.dob?.message} required>
         <input {...register("dob")} type="date" className={inputClass} />
+      </FormField>
+
+      <FormField label="Country" error={errors.country?.message} required>
+        <select {...register("country")} className={inputClass}>
+          <option value="">Select country…</option>
+          <option value="india">India</option>
+          <option value="usa">USA</option>
+        </select>
       </FormField>
 
       <FormField label="City" error={errors.city?.message} required>

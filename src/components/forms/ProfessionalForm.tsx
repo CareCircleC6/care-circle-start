@@ -10,6 +10,7 @@ const schema = z.object({
   email: z.string().email("Enter a valid email address"),
   phone: z.string().min(6, "Enter a valid phone number"),
   password: z.string().min(8, "Password must be at least 8 characters"),
+  country: z.string().min(1, "Country is required"),
   role: z.string().min(1, "Role is required"),
   experience: z.string().min(1, "Years of experience is required"),
   city: z.string().min(1, "City is required"),
@@ -55,6 +56,14 @@ export function ProfessionalForm({ onSuccess }: { onSuccess: () => void }) {
             {showPassword ? "Hide" : "Show"}
           </button>
         </div>
+      </FormField>
+
+      <FormField label="Country" error={errors.country?.message} required>
+        <select {...register("country")} className={inputClass}>
+          <option value="">Select country…</option>
+          <option value="india">India</option>
+          <option value="usa">USA</option>
+        </select>
       </FormField>
 
       <FormField label="Role" error={errors.role?.message} required>

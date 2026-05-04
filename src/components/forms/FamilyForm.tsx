@@ -10,6 +10,7 @@ const schema = z.object({
   email: z.string().email("Enter a valid email address"),
   phone: z.string().min(6, "Enter a valid phone number"),
   password: z.string().min(8, "Password must be at least 8 characters"),
+  country: z.string().min(1, "Country is required"),
   relationship: z.string().min(1, "Relationship is required"),
   patientName: z.string().min(2, "Patient name is required"),
   patientDob: z.string().min(1, "Patient date of birth is required"),
@@ -57,6 +58,14 @@ export function FamilyForm({ onSuccess }: { onSuccess: () => void }) {
             {showPassword ? "Hide" : "Show"}
           </button>
         </div>
+      </FormField>
+
+      <FormField label="Country" error={errors.country?.message} required>
+        <select {...register("country")} className={inputClass}>
+          <option value="">Select country…</option>
+          <option value="india">India</option>
+          <option value="usa">USA</option>
+        </select>
       </FormField>
 
       <FormField label="Relationship to Patient" error={errors.relationship?.message} required>
