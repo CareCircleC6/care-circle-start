@@ -62,7 +62,7 @@ function Index() {
               Care Coordination<br />and Navigation Hub
             </h1>
             <p className="mt-6 text-xl md:text-2xl text-black max-w-lg leading-snug">
-              Organize health records and navigate complex care - <span className="font-semibold">get your care coordination team.</span>
+              Know what's happening and what to do next - <span className="font-semibold">get and equip your care coordination team.</span>
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
