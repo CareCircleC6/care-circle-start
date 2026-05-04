@@ -94,7 +94,7 @@ function Index() {
                </div>
                <h3 className="text-xl font-semibold text-black mb-2">A Care Coordinator</h3>
               <p className="text-black/70 mb-6 leading-relaxed">Register as a nurse, navigator or care coordinator and join our coordinator network.</p>
-              <Button variant="hero" size="xl" className="w-full" onClick={() => setModalOpen(true)}>Sign Up as a Care Coordinator</Button>
+              <Button variant="hero" size="xl" className="w-full bg-[#3B82F6] hover:bg-[#2563EB] text-white" onClick={() => setModalOpen(true)}>Sign Up as a Care Coordinator</Button>
             </div>
           </div>
         </div>
