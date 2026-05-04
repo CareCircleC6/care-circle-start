@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { SignupModal } from "@/components/SignupModal";
 import { User, Users, ClipboardCheck, FileText, Pill, MessageCircle, Zap } from "lucide-react";
 import heroImage from "@/assets/hero-illustration.jpg";
+import logoImage from "@/assets/logo.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -31,7 +32,10 @@ function Index() {
       {/* Nav */}
       <nav className="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="text-xl font-bold text-primary" style={{ fontFamily: "var(--font-display)" }}>Care Circle Global</span>
+          <div className="flex items-center gap-2">
+            <img src={logoImage} alt="Care Circle Global" className="h-10 w-10" />
+            <span className="text-xl font-bold text-primary" style={{ fontFamily: "var(--font-display)" }}>Care Circle Global</span>
+          </div>
           <Button variant="hero" size="xl" onClick={() => setModalOpen(true)}>Get Started</Button>
         </div>
       </nav>
