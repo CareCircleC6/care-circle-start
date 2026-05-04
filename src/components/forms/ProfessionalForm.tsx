@@ -4,6 +4,7 @@ import { z } from "zod";
 import { FormField } from "./FormField";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const schema = z.object({
   fullName: z.string().min(2, "Name is required"),
@@ -26,8 +27,26 @@ export function ProfessionalForm({ onSuccess }: { onSuccess: () => void }) {
   });
 
   const onSubmit = async (data: ProfessionalData) => {
-    console.log("Professional signup:", data);
-    await new Promise(r => setTimeout(r, 800));
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+    const { error } = await supabase
+      .from("profiles")
+      .update({
+        phone: data.phone,
+        country: data.country,
+        city: data.city,
+        languages: data.languages,
+        professional_role: data.role,
+        experience_years: parseInt(data.experience, 10),
+        profile_completed: true,
+      })
+      .eq("user_id", user.id);
+
+    if (error) {
+      console.error("Profile update error:", error);
+      return;
+    }
     onSuccess();
   };
 

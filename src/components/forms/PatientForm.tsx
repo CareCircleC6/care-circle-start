@@ -4,6 +4,7 @@ import { z } from "zod";
 import { FormField } from "./FormField";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const CONDITION_OPTIONS = [
   "Diabetes (Type 1)",
@@ -62,8 +63,23 @@ export function PatientForm({ onSuccess }: { onSuccess: () => void }) {
   const addFamily = watch("addFamily");
 
   const onSubmit = async (data: PatientData) => {
-    console.log("Patient signup:", data);
-    await new Promise(r => setTimeout(r, 800));
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+    const { error } = await supabase
+      .from("profiles")
+      .update({
+        phone: data.phone,
+        country: data.country,
+        city: data.city,
+        profile_completed: true,
+      })
+      .eq("user_id", user.id);
+
+    if (error) {
+      console.error("Profile update error:", error);
+      return;
+    }
     onSuccess();
   };
 
