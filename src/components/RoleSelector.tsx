@@ -1,5 +1,15 @@
  import type { UserRole } from "./SignupModal";
 import { User, Users, ClipboardCheck } from "lucide-react";
+import React from "react";
+
+function CoordinatorIcon({ className, strokeWidth }: { className?: string; strokeWidth?: number }) {
+  return (
+    <div className="relative w-6 h-6">
+      <User className="absolute left-0 top-0 w-4 h-4 text-primary" strokeWidth={strokeWidth} />
+      <ClipboardCheck className="absolute right-0 bottom-0 w-4 h-4 text-primary" strokeWidth={strokeWidth} />
+    </div>
+  );
+}
 
 const roles = [
   {
@@ -18,7 +28,7 @@ const roles = [
     id: "professional" as const,
     title: "I am a Professional",
     description: "Register as a coordinator or navigator",
-     icon: ClipboardCheck,
+     icon: CoordinatorIcon,
   },
 ];
 
@@ -36,9 +46,9 @@ export function RoleSelector({ onSelect }: { onSelect: (role: NonNullable<UserRo
             onClick={() => onSelect(role.id)}
             className="w-full flex items-center gap-4 p-4 rounded-xl border border-border bg-card hover:border-primary/50 hover:bg-primary/5 transition-all text-left group"
           >
-             <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-               <role.icon className="w-6 h-6 text-primary" strokeWidth={1.75} />
-             </div>
+            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+              <role.icon className="w-6 h-6 text-primary" strokeWidth={1.75} />
+            </div>
             <div className="flex-1">
               <p className="font-semibold text-foreground group-hover:text-primary transition-colors">{role.title}</p>
               <p className="text-sm text-muted-foreground">{role.description}</p>
