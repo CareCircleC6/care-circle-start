@@ -236,7 +236,10 @@ function Index() {
             {/* Professional */}
              <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-primary/30 transition-all text-black">
                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-5">
-                 <ClipboardCheck className="w-8 h-8 text-primary" strokeWidth={1.75} />
+                 <div className="relative w-8 h-8">
+                   <User className="absolute left-0 top-0 w-5 h-5 text-primary" strokeWidth={1.75} />
+                   <ClipboardCheck className="absolute right-1 bottom-0 w-5 h-5 text-primary" strokeWidth={1.75} />
+                 </div>
                </div>
                <h3 className="text-xl font-semibold text-black mb-2">A Care Coordinator</h3>
                <p className="text-black mb-6 leading-relaxed">Register as a nurse, navigator or care coordinator and join our coordinator network.</p>
