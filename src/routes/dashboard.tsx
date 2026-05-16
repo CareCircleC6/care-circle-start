@@ -100,6 +100,7 @@ function DashboardPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("snapshot");
+  const [dismissedCritical, setDismissedCritical] = useState<number[]>([]);
 
   const menuItems = useMemo(() => ([
     { id: "snapshot",  label: "Snapshot",       icon: LayoutDashboard },
@@ -169,7 +170,7 @@ function DashboardPage() {
     return <div className="min-h-screen flex items-center justify-center bg-background"><p className="text-muted-foreground">Loading your dashboard…</p></div>;
   }
 
-  const critical = alerts.filter(a => a.level === "critical");
+  const critical = alerts.filter(a => a.level === "critical" && !dismissedCritical.includes(a.id));
 
   return (
     <div className="min-h-screen bg-[oklch(0.985_0.003_180)] pb-24 md:pb-8">
@@ -197,17 +198,28 @@ function DashboardPage() {
         </div>
       </header>
 
-      {/* critical banner */}
-      {critical.map(c => (
-        <div key={c.id} className="bg-red-600 text-white">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 py-2.5 flex items-center gap-3 text-sm">
-            <AlertTriangle className="w-4 h-4 shrink-0" />
-            <span className="font-medium">{c.title}.</span>
-            <span className="opacity-90 hidden md:inline">{c.why}</span>
-            <Button size="sm" variant="secondary" className="ml-auto h-7 text-red-700">{c.action}</Button>
-          </div>
+      {/* critical banner — sticky, dismissible */}
+      {critical.length > 0 && (
+        <div className="sticky top-14 z-20 shadow-md">
+          {critical.map(c => (
+            <div key={c.id} className="bg-red-600 text-white">
+              <div className="max-w-7xl mx-auto px-4 md:px-6 py-2.5 flex items-center gap-3 text-sm">
+                <AlertTriangle className="w-4 h-4 shrink-0" />
+                <span className="font-medium">{c.title}.</span>
+                <span className="opacity-90 hidden md:inline">{c.why}</span>
+                <Button size="sm" variant="secondary" className="ml-auto h-7 text-red-700">{c.action}</Button>
+                <button
+                  aria-label="Dismiss alert"
+                  onClick={() => setDismissedCritical(d => [...d, c.id])}
+                  className="ml-1 rounded p-1 hover:bg-white/15"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
 
       {/* Mobile menu overlay */}
       {menuOpen && (
