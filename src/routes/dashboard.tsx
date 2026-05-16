@@ -348,10 +348,10 @@ function DashboardPage() {
               </div>
             </div>
             <CircleViz focused={focusedNode} setFocused={setFocusedNode} filter={circleFilter} />
-            <div className="mt-4 bg-muted/60 rounded-xl px-4 py-3 text-sm flex flex-wrap items-center gap-3">
-              <span className="font-medium">Focused — Vitals:</span>
-              <span className="text-muted-foreground">BP 158/96 · 3-day avg above goal</span>
-              <Button size="sm" variant="ghost" className="ml-auto h-7">Open detail <ChevronRight className="w-3.5 h-3.5 ml-1" /></Button>
+            <div className="mt-4 rounded-xl px-4 py-3 text-sm flex flex-wrap items-center gap-3 bg-gradient-to-r from-amber-100 via-orange-100 to-rose-100 border border-orange-200 shadow-sm">
+              <span className="font-semibold text-orange-700">Focused — Vitals:</span>
+              <span className="font-semibold text-foreground/90">BP 158/96 · 3-day avg above goal</span>
+              <Button size="sm" variant="ghost" className="ml-auto h-7 font-semibold text-orange-700 hover:bg-orange-200/60">Open detail <ChevronRight className="w-3.5 h-3.5 ml-1" /></Button>
             </div>
           </div>
 
