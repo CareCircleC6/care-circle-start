@@ -7,6 +7,40 @@ import logoImage from "@/assets/logo-new.png";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Care Circle Global — Care Coordination & Navigation Hub" },
+      { name: "description", content: "Organize health records, coordinate your care team, and stay ahead of crises. HIPAA-grade coordination for patients, families, and care coordinators." },
+      { property: "og:title", content: "Care Circle Global — Care Coordination & Navigation Hub" },
+      { property: "og:description", content: "Organize health records, coordinate your care team, and stay ahead of crises. HIPAA-grade coordination for patients, families, and care coordinators." },
+      { property: "og:url", content: "https://carecircleglobal.com/" },
+      { property: "og:type", content: "website" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://carecircleglobal.com/" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Care Circle Global",
+          url: "https://carecircleglobal.com/",
+          logo: "https://carecircleglobal.com/favicon.png",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Care Circle Global",
+          url: "https://carecircleglobal.com/",
+        }),
+      },
+    ],
+  }),
   component: Index,
 });
 
@@ -118,8 +152,9 @@ function Index() {
 
               <div className="space-y-4 mb-6">
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-1.5">I am signing up as<span className="text-destructive">*</span></label>
+                  <label htmlFor="hero-role" className="block text-sm font-semibold text-foreground mb-1.5">I am signing up as<span className="text-destructive">*</span></label>
                   <select
+                    id="hero-role"
                     value={heroRole}
                     onChange={(e) => setHeroRole(e.target.value)}
                     required
@@ -134,8 +169,9 @@ function Index() {
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-sm font-semibold text-foreground mb-1.5">First Name<span className="text-destructive">*</span></label>
+                    <label htmlFor="hero-first-name" className="block text-sm font-semibold text-foreground mb-1.5">First Name<span className="text-destructive">*</span></label>
                     <input
+                      id="hero-first-name"
                       type="text"
                       value={heroFirstName}
                       onChange={(e) => setHeroFirstName(e.target.value)}
@@ -145,8 +181,9 @@ function Index() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-foreground mb-1.5">Last Name<span className="text-destructive">*</span></label>
+                    <label htmlFor="hero-last-name" className="block text-sm font-semibold text-foreground mb-1.5">Last Name<span className="text-destructive">*</span></label>
                     <input
+                      id="hero-last-name"
                       type="text"
                       value={heroLastName}
                       onChange={(e) => setHeroLastName(e.target.value)}
@@ -158,8 +195,9 @@ function Index() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-1.5">Email<span className="text-destructive">*</span></label>
+                  <label htmlFor="hero-email" className="block text-sm font-semibold text-foreground mb-1.5">Email<span className="text-destructive">*</span></label>
                   <input
+                    id="hero-email"
                     type="email"
                     value={heroEmail}
                     onChange={(e) => setHeroEmail(e.target.value)}
@@ -170,8 +208,9 @@ function Index() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-1.5">Password<span className="text-destructive">*</span></label>
+                  <label htmlFor="hero-password" className="block text-sm font-semibold text-foreground mb-1.5">Password<span className="text-destructive">*</span></label>
                   <input
+                    id="hero-password"
                     type="password"
                     value={heroPassword}
                     onChange={(e) => setHeroPassword(e.target.value)}
