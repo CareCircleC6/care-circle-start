@@ -197,7 +197,7 @@ function DashboardPage() {
           </div>
           <div className="flex items-center gap-2">
             <span className="hidden md:inline text-sm text-muted-foreground">{firstName || userEmail}</span>
-            <Button variant="ghost" size="sm" onClick={handleLogout}><LogOut className="w-4 h-4 mr-1" />Sign out</Button>
+            <Button variant="ghost" size="sm" onClick={handleLogout} className="italic text-orange-600 hover:text-orange-700"><LogOut className="w-4 h-4 mr-1" />Sign out</Button>
           </div>
         </div>
       </header>
