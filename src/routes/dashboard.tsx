@@ -413,17 +413,17 @@ function CircleViz({ focused, setFocused }: { focused: string | null; setFocused
           const y = cy + r * Math.sin(rad);
           const isFocused = focused === n.id;
           return (
-            <g key={n.id} style={{ cursor: "pointer" }} onClick={() => setFocused(n.id)}>
+            <g key={n.id} style={{ cursor: "pointer" }} onClick={() => setFocused(n.id)} onMouseEnter={() => setFocused(n.id)}>
               <circle cx={x} cy={y} r={isFocused ? 30 : 26}
                 fill={n.alert ? "oklch(0.96 0.08 60)" : "oklch(0.97 0.01 200)"}
                 stroke={isFocused ? "oklch(0.60 0.14 180)" : n.alert ? "oklch(0.75 0.15 50)" : "oklch(0.88 0.01 200)"}
                 strokeWidth={isFocused ? 2 : 1} />
               <text x={x} y={y - 2} textAnchor="middle" className="fill-foreground" style={{ fontSize: 10, fontWeight: 600 }}>{n.label}</text>
               <text x={x} y={y + 10} textAnchor="middle" className="fill-muted-foreground" style={{ fontSize: 8 }}>
-                {n.sub.split(/(\s+)/).map((tok, i) => {
-                  const isAlert = /^\d+$/.test(tok) || /^(overdue|low|↑|↓)$/i.test(tok);
+                {n.sub.split(/(\d+)/).map((tok, i) => {
+                  const isNum = /^\d+$/.test(tok);
                   return (
-                    <tspan key={i} fill={isAlert ? "oklch(0.58 0.22 25)" : undefined} fontWeight={isAlert ? 700 : undefined}>
+                    <tspan key={i} fill={isNum ? "oklch(0.58 0.22 25)" : undefined} fontWeight={isNum ? 700 : undefined}>
                       {tok}
                     </tspan>
                   );
