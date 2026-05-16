@@ -385,6 +385,22 @@ function CircleViz({ focused, setFocused }: { focused: string | null; setFocused
     <div className="relative w-full overflow-x-auto">
       <svg viewBox={`0 0 ${size} ${size}`} className="w-full max-w-md mx-auto h-auto">
         <circle cx={cx} cy={cy} r={r} fill="none" stroke="oklch(0.92 0.005 240)" strokeDasharray="3 4" />
+        {/* spokes from center to each node */}
+        {circleNodes.map(n => {
+          const rad = (n.angle * Math.PI) / 180;
+          const x = cx + r * Math.cos(rad);
+          const y = cy + r * Math.sin(rad);
+          return (
+            <line
+              key={`spoke-${n.id}`}
+              x1={cx} y1={cy} x2={x} y2={y}
+              stroke={n.alert ? "oklch(0.75 0.18 25)" : "oklch(0.88 0.01 200)"}
+              strokeWidth={n.alert ? 1.5 : 1}
+              strokeDasharray={n.alert ? "0" : "2 3"}
+              opacity={0.7}
+            />
+          );
+        })}
         {/* center */}
         <g>
           <circle cx={cx} cy={cy} r={46} fill="oklch(0.96 0.02 80)" stroke="oklch(0.85 0.08 80)" />
@@ -403,7 +419,16 @@ function CircleViz({ focused, setFocused }: { focused: string | null; setFocused
                 stroke={isFocused ? "oklch(0.60 0.14 180)" : n.alert ? "oklch(0.75 0.15 50)" : "oklch(0.88 0.01 200)"}
                 strokeWidth={isFocused ? 2 : 1} />
               <text x={x} y={y - 2} textAnchor="middle" className="fill-foreground" style={{ fontSize: 10, fontWeight: 600 }}>{n.label}</text>
-              <text x={x} y={y + 10} textAnchor="middle" className="fill-muted-foreground" style={{ fontSize: 8 }}>{n.sub}</text>
+              <text x={x} y={y + 10} textAnchor="middle" className="fill-muted-foreground" style={{ fontSize: 8 }}>
+                {n.sub.split(/(\s+)/).map((tok, i) => {
+                  const isAlert = /^\d+$/.test(tok) || /^(overdue|low|↑|↓)$/i.test(tok);
+                  return (
+                    <tspan key={i} fill={isAlert ? "oklch(0.58 0.22 25)" : undefined} fontWeight={isAlert ? 700 : undefined}>
+                      {tok}
+                    </tspan>
+                  );
+                })}
+              </text>
             </g>
           );
         })}
