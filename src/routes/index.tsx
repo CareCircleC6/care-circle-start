@@ -109,9 +109,9 @@ function Index() {
           </div>
           <div className="flex items-center gap-2 md:gap-3">
             <Link to="/login" className="flex-1 md:flex-none">
-              <Button variant="heroGhost" size="default" className="w-full md:w-auto md:h-14 md:px-10 md:text-base md:rounded-xl">Log In</Button>
+              <Button variant="heroGhost" size="default" className="w-full md:w-auto h-12 px-6 text-base rounded-xl md:h-16 md:px-12 md:text-lg">Log In</Button>
             </Link>
-            <Button variant="hero" size="default" className="flex-1 md:flex-none md:h-14 md:px-10 md:text-base md:rounded-xl" onClick={() => setModalOpen(true)}>Get Started</Button>
+            <Button variant="hero" size="default" className="flex-1 md:flex-none h-12 px-6 text-base rounded-xl md:h-16 md:px-12 md:text-lg" onClick={() => setModalOpen(true)}>Get Started</Button>
           </div>
         </div>
       </nav>
