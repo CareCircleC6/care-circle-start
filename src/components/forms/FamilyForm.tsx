@@ -29,21 +29,42 @@ export function FamilyForm({ onSuccess }: { onSuccess: () => void }) {
   });
 
   const onSubmit = async (data: FamilyData) => {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
+    const [firstName, ...rest] = data.fullName.trim().split(" ");
+    const lastName = rest.join(" ");
 
-    const { error } = await supabase
-      .from("profiles")
-      .update({
-        phone: data.phone,
-        country: data.country,
-        profile_completed: true,
-      })
-      .eq("user_id", user.id);
+    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+      email: data.email,
+      password: data.password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/dashboard`,
+        data: {
+          first_name: firstName,
+          last_name: lastName,
+          role: "family",
+        },
+      },
+    });
 
-    if (error) {
-      console.error("Profile update error:", error);
+    if (signUpError) {
+      console.error("Signup error:", signUpError);
+      alert(signUpError.message);
       return;
+    }
+
+    const userId = signUpData.user?.id;
+    if (userId) {
+      const { error: profileError } = await supabase
+        .from("profiles")
+        .update({
+          phone: data.phone,
+          country: data.country,
+          profile_completed: true,
+        })
+        .eq("user_id", userId);
+
+      if (profileError) {
+        console.error("Profile update error:", profileError);
+      }
     }
     onSuccess();
   };
