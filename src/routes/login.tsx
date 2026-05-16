@@ -8,6 +8,19 @@ import { Label } from "@/components/ui/label";
 import logoImage from "@/assets/logo-icon-cc.png";
 
 export const Route = createFileRoute("/login")({
+  head: () => ({
+    meta: [
+      { title: "Log In or Sign Up — Care Circle Global" },
+      { name: "description", content: "Access your Care Circle Global account to coordinate care, manage health records, and stay connected with your care team." },
+      { property: "og:title", content: "Log In or Sign Up — Care Circle Global" },
+      { property: "og:description", content: "Access your Care Circle Global account to coordinate care, manage health records, and stay connected with your care team." },
+      { property: "og:url", content: "https://carecircleglobal.com/login" },
+      { name: "robots", content: "noindex" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://carecircleglobal.com/login" },
+    ],
+  }),
   component: LoginPage,
 });
 

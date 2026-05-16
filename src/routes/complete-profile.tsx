@@ -7,6 +7,19 @@ import { ProfessionalForm } from "@/components/forms/ProfessionalForm";
 import logoImage from "@/assets/logo-new.png";
 
 export const Route = createFileRoute("/complete-profile")({
+  head: () => ({
+    meta: [
+      { title: "Complete Your Profile — Care Circle Global" },
+      { name: "description", content: "Finish setting up your Care Circle Global account so your care team has the details they need to coordinate effectively." },
+      { property: "og:title", content: "Complete Your Profile — Care Circle Global" },
+      { property: "og:description", content: "Finish setting up your Care Circle Global account so your care team has the details they need to coordinate effectively." },
+      { property: "og:url", content: "https://carecircleglobal.com/complete-profile" },
+      { name: "robots", content: "noindex" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://carecircleglobal.com/complete-profile" },
+    ],
+  }),
   component: CompleteProfilePage,
 });
 

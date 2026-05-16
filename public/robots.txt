@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /complete-profile
+
+Sitemap: https://carecircleglobal.com/sitemap.xml
