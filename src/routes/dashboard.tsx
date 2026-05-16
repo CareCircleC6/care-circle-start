@@ -285,7 +285,7 @@ function DashboardPage() {
               <h2 className="text-lg font-semibold flex items-center gap-2">
                 <Upload className="w-4 h-4 text-primary" />Info intake
               </h2>
-              <span className="text-xs text-muted-foreground">Add updates & documents</span>
+              <span className="text-xs italic font-semibold text-muted-foreground">Add updates & documents</span>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
               Capture new updates about Rajesh - upload a lab report, write a quick note, or record a voice update from the caregiver.
