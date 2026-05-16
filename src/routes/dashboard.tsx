@@ -461,7 +461,7 @@ function DashboardPage() {
       </main>
 
       {/* Mobile bottom bar */}
-      <nav className="md:hidden fixed bottom-0 inset-x-0 z-30 bg-card border-t border-border">
+      <nav className="md:hidden fixed bottom-0 inset-x-0 z-30 bg-black text-white border-t border-black/40 shadow-lg">
         <div className="grid grid-cols-4 text-xs">
           <BottomBtn icon={Upload} label="Upload" />
           <BottomBtn icon={FileText} label="Note" />
@@ -764,7 +764,7 @@ function Legend({ color, label }: { color: string; label: string }) {
 
 function BottomBtn({ icon: Icon, label }: { icon: any; label: string }) {
   return (
-    <button className="flex flex-col items-center justify-center py-2.5 gap-1 text-muted-foreground active:bg-muted">
+    <button className="flex flex-col items-center justify-center py-2.5 gap-1 text-white/80 hover:text-white active:bg-white/10">
       <Icon className="w-5 h-5" />
       <span>{label}</span>
     </button>
