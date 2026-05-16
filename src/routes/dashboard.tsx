@@ -75,14 +75,14 @@ const documents = [
 ];
 
 const circleNodes = [
-  { id: "lata", label: "Lata", sub: "Caregiver · onsite", angle: 270, alert: false, icon: Users },
-  { id: "iyer", label: "Dr Iyer", sub: "Eyes · overdue", angle: 315, alert: true, icon: Stethoscope },
-  { id: "log", label: "Daily log", sub: "Last: 4 PM", angle: 0, alert: false, icon: ClipboardList },
-  { id: "vitals", label: "Vitals", sub: "BP ↑ glucose ↑", angle: 45, alert: true, icon: Activity },
-  { id: "meds", label: "Meds", sub: "5 active · 1 low", angle: 90, alert: true, icon: Pill },
-  { id: "khanna", label: "Dr Khanna", sub: "Cardio · Thu", angle: 135, alert: false, icon: Stethoscope },
-  { id: "labs", label: "Labs", sub: "HbA1c overdue", angle: 180, alert: true, icon: FlaskConical },
-  { id: "appts", label: "Appts", sub: "2 upcoming · 1 overdue", angle: 225, alert: true, icon: Calendar },
+  { id: "lata",   label: "Lata",      sub: "Caregiver · onsite",       angle: 270, alert: false, alertCount: 0, icon: Users },
+  { id: "iyer",   label: "Dr Iyer",   sub: "Eyes · overdue",           angle: 315, alert: true,  alertCount: 1, icon: Stethoscope },
+  { id: "log",    label: "Daily log", sub: "Last: 4 PM",               angle: 0,   alert: false, alertCount: 0, icon: ClipboardList },
+  { id: "vitals", label: "Vitals",    sub: "BP ↑ glucose ↑",           angle: 45,  alert: true,  alertCount: 2, icon: Activity },
+  { id: "meds",   label: "Meds",      sub: "5 active · 1 low",         angle: 90,  alert: true,  alertCount: 1, icon: Pill },
+  { id: "khanna", label: "Dr Khanna", sub: "Cardio · Thu",             angle: 135, alert: false, alertCount: 0, icon: Stethoscope },
+  { id: "labs",   label: "Labs",      sub: "HbA1c overdue",            angle: 180, alert: true,  alertCount: 1, icon: FlaskConical },
+  { id: "appts",  label: "Appts",     sub: "2 upcoming · 1 overdue",   angle: 225, alert: true,  alertCount: 1, icon: Calendar },
 ];
 
 /* ----------------- component ----------------- */
@@ -518,48 +518,93 @@ function AlertCard({ a }: { a: typeof alerts[number] }) {
 }
 
 function CircleViz({ focused, setFocused }: { focused: string | null; setFocused: (id: string | null) => void }) {
-  const size = 380;
+  const size = 520;
   const cx = size / 2, cy = size / 2;
-  const r = 140;
+  const r = 180;
+  const nodeR = 34;
+  const ink = "oklch(0.35 0.04 240)";
   return (
     <div className="relative w-full overflow-x-auto">
-      <svg viewBox={`0 0 ${size} ${size}`} className="w-full max-w-md mx-auto h-auto">
-        <circle cx={cx} cy={cy} r={r} fill="none" stroke="oklch(0.92 0.005 240)" strokeDasharray="3 4" />
-        {/* spokes from center to each node */}
+      <svg viewBox={`0 0 ${size} ${size}`} className="w-full max-w-xl mx-auto h-auto">
+        {/* outer hand-drawn ring */}
+        <circle cx={cx} cy={cy} r={r + nodeR + 14} fill="none" stroke={ink} strokeWidth={1} strokeDasharray="2 6" opacity={0.25} />
+        <circle cx={cx} cy={cy} r={r} fill="none" stroke={ink} strokeWidth={1.25} opacity={0.55} />
+
+        {/* spokes from center to each node (sketch-style solid lines) */}
         {circleNodes.map(n => {
           const rad = (n.angle * Math.PI) / 180;
           const x = cx + r * Math.cos(rad);
           const y = cy + r * Math.sin(rad);
+          // start at edge of center, end at edge of node
+          const centerR = 56;
+          const sx = cx + centerR * Math.cos(rad);
+          const sy = cy + centerR * Math.sin(rad);
+          const ex = x - nodeR * Math.cos(rad);
+          const ey = y - nodeR * Math.sin(rad);
           return (
             <line
               key={`spoke-${n.id}`}
-              x1={cx} y1={cy} x2={x} y2={y}
-              stroke={n.alert ? "oklch(0.75 0.18 25)" : "oklch(0.88 0.01 200)"}
-              strokeWidth={n.alert ? 1.5 : 1}
-              strokeDasharray={n.alert ? "0" : "2 3"}
-              opacity={0.7}
+              x1={sx} y1={sy} x2={ex} y2={ey}
+              stroke={ink}
+              strokeWidth={1.4}
+              opacity={0.55}
+              strokeLinecap="round"
             />
           );
         })}
-        {/* center */}
+
+        {/* center patient */}
         <g>
-          <circle cx={cx} cy={cy} r={46} fill="oklch(0.96 0.02 80)" stroke="oklch(0.85 0.08 80)" />
-          <text x={cx} y={cy - 4} textAnchor="middle" className="fill-foreground" style={{ fontSize: 13, fontWeight: 600 }}>Rajesh</text>
-          <text x={cx} y={cy + 12} textAnchor="middle" className="fill-muted-foreground" style={{ fontSize: 10 }}>72 · Lucknow</text>
+          <circle cx={cx} cy={cy} r={56} fill="oklch(0.98 0.015 80)" stroke={ink} strokeWidth={1.6} />
+          <circle cx={cx} cy={cy} r={50} fill="none" stroke={ink} strokeWidth={0.8} opacity={0.4} />
+          <text x={cx} y={cy - 4} textAnchor="middle" className="fill-foreground" style={{ fontSize: 16, fontWeight: 700 }}>Rajesh</text>
+          <text x={cx} y={cy + 14} textAnchor="middle" className="fill-muted-foreground" style={{ fontSize: 11 }}>72 · Lucknow</text>
         </g>
+
+        {/* nodes */}
         {circleNodes.map(n => {
           const rad = (n.angle * Math.PI) / 180;
           const x = cx + r * Math.cos(rad);
           const y = cy + r * Math.sin(rad);
           const isFocused = focused === n.id;
+          // label position outside node along radius
+          const labelDist = nodeR + 14;
+          const lx = x + labelDist * Math.cos(rad);
+          const ly = y + labelDist * Math.sin(rad);
+          // text anchor based on angle
+          let anchor: "start" | "middle" | "end" = "middle";
+          const cosA = Math.cos(rad);
+          if (cosA > 0.3) anchor = "start";
+          else if (cosA < -0.3) anchor = "end";
+          // sub line below label
+          const subDy = 12;
           return (
             <g key={n.id} style={{ cursor: "pointer" }} onClick={() => setFocused(n.id)} onMouseEnter={() => setFocused(n.id)}>
-              <circle cx={x} cy={y} r={isFocused ? 30 : 26}
-                fill={n.alert ? "oklch(0.96 0.08 60)" : "oklch(0.97 0.01 200)"}
-                stroke={isFocused ? "oklch(0.60 0.14 180)" : n.alert ? "oklch(0.75 0.15 50)" : "oklch(0.88 0.01 200)"}
-                strokeWidth={isFocused ? 2 : 1} />
-              <text x={x} y={y - 2} textAnchor="middle" className="fill-foreground" style={{ fontSize: 10, fontWeight: 600 }}>{n.label}</text>
-              <text x={x} y={y + 10} textAnchor="middle" className="fill-muted-foreground" style={{ fontSize: 8 }}>
+              {/* node circle */}
+              <circle cx={x} cy={y} r={isFocused ? nodeR + 3 : nodeR}
+                fill={n.alert ? "oklch(0.97 0.04 30)" : "oklch(0.985 0.005 200)"}
+                stroke={isFocused ? "oklch(0.55 0.16 200)" : ink}
+                strokeWidth={isFocused ? 2 : 1.4} />
+              {/* icon inside node — draw via foreignObject for lucide */}
+              <foreignObject x={x - 12} y={y - 12} width={24} height={24}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 24, height: 24, color: n.alert ? "oklch(0.55 0.18 30)" : "oklch(0.45 0.04 240)" }}>
+                  <n.icon width={20} height={20} />
+                </div>
+              </foreignObject>
+
+              {/* red alert badge with count */}
+              {n.alert && n.alertCount > 0 && (
+                <g>
+                  <circle cx={x + nodeR - 6} cy={y - nodeR + 6} r={10}
+                    fill="oklch(0.58 0.22 25)" stroke="white" strokeWidth={1.5} />
+                  <text x={x + nodeR - 6} y={y - nodeR + 10} textAnchor="middle"
+                    fill="white" style={{ fontSize: 11, fontWeight: 700 }}>{n.alertCount}</text>
+                </g>
+              )}
+
+              {/* label outside */}
+              <text x={lx} y={ly} textAnchor={anchor} className="fill-foreground" style={{ fontSize: 13, fontWeight: 600 }}>{n.label}</text>
+              <text x={lx} y={ly + subDy} textAnchor={anchor} className="fill-muted-foreground" style={{ fontSize: 11 }}>
                 {n.sub.split(/(\d+)/).map((tok, i) => {
                   const isNum = /^\d+$/.test(tok);
                   return (
