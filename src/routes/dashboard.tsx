@@ -582,7 +582,7 @@ function CircleViz({ focused, setFocused, filter }: { focused: string | null; se
         <circle cx={cx} cy={cy} r={r} fill="none" stroke={ink} strokeWidth={1.25} opacity={0.55} />
 
         {/* spokes from center to each node (sketch-style solid lines) */}
-        {circleNodes.map(n => {
+        {nodes.map(n => {
           const rad = (n.angle * Math.PI) / 180;
           const x = cx + r * Math.cos(rad);
           const y = cy + r * Math.sin(rad);
@@ -613,7 +613,7 @@ function CircleViz({ focused, setFocused, filter }: { focused: string | null; se
         </g>
 
         {/* nodes */}
-        {circleNodes.map(n => {
+        {nodes.map(n => {
           const rad = (n.angle * Math.PI) / 180;
           const x = cx + r * Math.cos(rad);
           const y = cy + r * Math.sin(rad);
