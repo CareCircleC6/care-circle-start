@@ -332,7 +332,7 @@ function DashboardPage() {
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-lg font-semibold">Care circle</h2>
               <div className="flex gap-1 text-xs">
-                {(["All","People","Domains","Risks"] as const).map(f => (
+                {(["People","Domains","Risks"] as const).map(f => (
                   <button
                     key={f}
                     onClick={() => setCircleFilter(f)}
