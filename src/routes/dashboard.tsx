@@ -424,6 +424,8 @@ function DashboardPage() {
               <ChevronDown className={`w-4 h-4 transition-transform ${briefingOpen ? "" : "-rotate-90"}`} />
             </button>
             {briefingOpen && (
+              <>
+              <p className="mt-1 text-xs italic text-muted-foreground">sms was send at 7am</p>
               <ul className="mt-3 space-y-2 text-sm text-foreground/90">
                 {briefing.map((b, i) => {
                   const parts = b.split(/(Status:|Overdue:|Next 48h:|Active risks:)/g);
@@ -447,6 +449,7 @@ function DashboardPage() {
                   );
                 })}
               </ul>
+              </>
             )}
           </div>
 
