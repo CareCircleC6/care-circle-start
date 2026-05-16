@@ -265,7 +265,7 @@ function DashboardPage() {
                   </span>
                 </div>
                 <p className="text-sm text-muted-foreground mt-1">
-                  {patient.age} · {patient.city} · Updated {patient.lastUpdated}
+                  {patient.age} · {patient.city} · <em className="italic">Updated {patient.lastUpdated}…</em>
                 </p>
                 <div className="flex flex-wrap gap-4 mt-3 text-sm">
                   <Stat icon={Pill} label="Medications" value={patient.medications} />
