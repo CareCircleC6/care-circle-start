@@ -96,6 +96,7 @@ function DashboardPage() {
   const [firstName, setFirstName] = useState<string>("");
   const [briefingOpen, setBriefingOpen] = useState(true);
   const [focusedNode, setFocusedNode] = useState<string | null>("vitals");
+  const [circleFilter, setCircleFilter] = useState<"All" | "People" | "Domains" | "Risks">("All");
   const [chatInput, setChatInput] = useState("");
   const [chat, setChat] = useState<{ role: "user" | "assistant"; text: string }[]>([
     { role: "assistant", text: "Hi — I can explain what's happening with Rajesh. Try: 'What changed this week?'" },
@@ -331,12 +332,22 @@ function DashboardPage() {
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-lg font-semibold">Care circle</h2>
               <div className="flex gap-1 text-xs">
-                {["People","Domains","Risks"].map(f => (
-                  <button key={f} className="px-2.5 py-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted">{f}</button>
+                {(["All","People","Domains","Risks"] as const).map(f => (
+                  <button
+                    key={f}
+                    onClick={() => setCircleFilter(f)}
+                    className={`px-2.5 py-1 rounded-md transition-colors ${
+                      circleFilter === f
+                        ? "bg-primary text-primary-foreground font-medium"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    {f}
+                  </button>
                 ))}
               </div>
             </div>
-            <CircleViz focused={focusedNode} setFocused={setFocusedNode} />
+            <CircleViz focused={focusedNode} setFocused={setFocusedNode} filter={circleFilter} />
             <div className="mt-4 bg-muted/60 rounded-xl px-4 py-3 text-sm flex flex-wrap items-center gap-3">
               <span className="font-medium">Focused — Vitals:</span>
               <span className="text-muted-foreground">BP 158/96 · 3-day avg above goal</span>
@@ -541,7 +552,7 @@ function AlertCard({ a }: { a: typeof alerts[number] }) {
   );
 }
 
-function CircleViz({ focused, setFocused }: { focused: string | null; setFocused: (id: string | null) => void }) {
+function CircleViz({ focused, setFocused, filter }: { focused: string | null; setFocused: (id: string | null) => void; filter: "All" | "People" | "Domains" | "Risks" }) {
   const [popup, setPopup] = useState<{ id: string; x: number; y: number } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const size = 520;
@@ -549,7 +560,20 @@ function CircleViz({ focused, setFocused }: { focused: string | null; setFocused
   const r = 180;
   const nodeR = 34;
   const ink = "oklch(0.35 0.04 240)";
-  const popupNode = popup ? circleNodes.find(n => n.id === popup.id) : null;
+  const peopleIds = ["lata", "iyer", "khanna"];
+  const domainIds = ["vitals", "meds", "labs", "appts", "log"];
+  const visibleNodes = circleNodes.filter(n =>
+    filter === "All"     ? true :
+    filter === "People"  ? peopleIds.includes(n.id) :
+    filter === "Domains" ? domainIds.includes(n.id) :
+    /* Risks */            n.alert
+  );
+  // re-distribute angles evenly around the circle for visible subset
+  const nodes = visibleNodes.map((n, i) => ({
+    ...n,
+    angle: (i * 360) / visibleNodes.length - 90,
+  }));
+  const popupNode = popup ? nodes.find(n => n.id === popup.id) : null;
   return (
     <div ref={containerRef} className="relative w-full overflow-x-auto">
       <svg viewBox={`0 0 ${size} ${size}`} className="w-full max-w-xl mx-auto h-auto">
