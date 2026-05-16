@@ -458,10 +458,10 @@ function DashboardPage() {
 /* ----------------- helpers ----------------- */
 function Stat({ icon: Icon, label, value }: { icon: any; label: string; value: number }) {
   return (
-    <div className="flex items-center gap-1.5">
-      <Icon className="w-4 h-4 text-muted-foreground" />
-      <span className="font-medium">{value}</span>
-      <span className="text-muted-foreground">{label}</span>
+    <div className="flex items-center gap-1.5 text-primary">
+      <Icon className="w-4 h-4" />
+      <span className="font-semibold">{value}</span>
+      <span>{label}</span>
     </div>
   );
 }
