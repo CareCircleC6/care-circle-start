@@ -474,10 +474,10 @@ function DashboardPage() {
       {/* Mobile bottom bar */}
       <nav className="md:hidden fixed bottom-0 inset-x-0 z-30 bg-black text-white border-t border-black/40 shadow-lg">
         <div className="grid grid-cols-4 text-xs">
-          <BottomBtn icon={Upload} label="Upload" />
-          <BottomBtn icon={FileText} label="Note" />
-          <BottomBtn icon={Bell} label="Alerts" />
-          <BottomBtn icon={Menu} label="Ask" />
+          <BottomBtn icon={Upload} label="Upload" onClick={() => scrollTo("intake")} />
+          <BottomBtn icon={FileText} label="Note" onClick={() => scrollTo("intake")} />
+          <BottomBtn icon={Bell} label="Alerts" onClick={() => scrollTo("alerts")} />
+          <BottomBtn icon={Menu} label="Ask" onClick={() => scrollTo("assistant")} />
         </div>
       </nav>
     </div>
@@ -786,9 +786,9 @@ function Legend({ color, label }: { color: string; label: string }) {
   return <span className="inline-flex items-center gap-1.5"><span className={`w-2 h-2 rounded-full ${color}`} />{label}</span>;
 }
 
-function BottomBtn({ icon: Icon, label }: { icon: any; label: string }) {
+function BottomBtn({ icon: Icon, label, onClick }: { icon: any; label: string; onClick?: () => void }) {
   return (
-    <button className="flex flex-col items-center justify-center py-2.5 gap-1 text-white/80 hover:text-white active:bg-white/10">
+    <button onClick={onClick} className="flex flex-col items-center justify-center py-2.5 gap-1 text-white/80 hover:text-white active:bg-white/10">
       <Icon className="w-5 h-5" />
       <span>{label}</span>
     </button>
