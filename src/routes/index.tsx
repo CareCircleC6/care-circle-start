@@ -103,7 +103,7 @@ function Index() {
     <div className="min-h-screen bg-background">
       {/* Nav */}
       <nav className="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-md border-b border-border/50">
-        <div className="max-w-6xl mx-auto px-6 pt-4 pb-2 md:h-20 md:pt-4 md:pb-0 flex flex-col md:flex-row items-center md:justify-between gap-3 md:gap-0">
+        <div className="max-w-6xl mx-auto px-6 pt-4 pb-3 md:h-20 md:pt-4 md:pb-0 flex flex-col md:flex-row items-center md:justify-between gap-5 md:gap-0">
           <div className="flex items-center gap-2 shrink-0">
             <img src={logoIcon} alt="Care Circle Global" className="h-12 w-12 object-contain" />
           </div>
