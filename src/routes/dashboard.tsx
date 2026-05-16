@@ -576,6 +576,8 @@ function CircleViz({ focused, setFocused }: { focused: string | null; setFocused
           const x = cx + r * Math.cos(rad);
           const y = cy + r * Math.sin(rad);
           const isFocused = focused === n.id;
+          const isVitals = n.id === "vitals";
+          const isHoverBlue = isFocused && !isVitals;
           // label position outside node along radius
           const labelDist = nodeR + 14;
           const lx = x + labelDist * Math.cos(rad);
@@ -591,12 +593,21 @@ function CircleViz({ focused, setFocused }: { focused: string | null; setFocused
             <g key={n.id} style={{ cursor: "pointer" }} onClick={() => setFocused(n.id)} onMouseEnter={() => setFocused(n.id)}>
               {/* node circle */}
               <circle cx={x} cy={y} r={isFocused ? nodeR + 3 : nodeR}
-                fill={isFocused ? "oklch(0.78 0.14 70)" : n.alert ? "oklch(0.97 0.04 30)" : "oklch(0.985 0.005 200)"}
-                stroke={isFocused ? "oklch(0.55 0.16 60)" : ink}
+                fill={
+                  isVitals ? "oklch(0.78 0.14 70)"
+                  : isHoverBlue ? "oklch(0.72 0.13 240)"
+                  : n.alert ? "oklch(0.97 0.04 30)"
+                  : "oklch(0.985 0.005 200)"
+                }
+                stroke={
+                  isVitals ? "oklch(0.55 0.16 60)"
+                  : isHoverBlue ? "oklch(0.45 0.18 240)"
+                  : ink
+                }
                 strokeWidth={isFocused ? 2 : 1.4} />
               {/* icon inside node — draw via foreignObject for lucide */}
               <foreignObject x={x - 12} y={y - 12} width={24} height={24}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 24, height: 24, color: isFocused ? "white" : n.alert ? "oklch(0.55 0.18 30)" : "oklch(0.45 0.04 240)" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 24, height: 24, color: (isVitals || isHoverBlue) ? "white" : n.alert ? "oklch(0.55 0.18 30)" : "oklch(0.45 0.04 240)" }}>
                   <n.icon width={20} height={20} />
                 </div>
               </foreignObject>
