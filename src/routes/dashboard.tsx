@@ -588,8 +588,8 @@ function CircleViz({ focused, setFocused }: { focused: string | null; setFocused
             <g key={n.id} style={{ cursor: "pointer" }} onClick={() => setFocused(n.id)} onMouseEnter={() => setFocused(n.id)}>
               {/* node circle */}
               <circle cx={x} cy={y} r={isFocused ? nodeR + 3 : nodeR}
-                fill={isFocused ? "oklch(0.78 0.09 240)" : n.alert ? "oklch(0.97 0.04 30)" : "oklch(0.985 0.005 200)"}
-                stroke={isFocused ? "oklch(0.55 0.16 200)" : ink}
+                fill={isFocused ? "oklch(0.78 0.14 70)" : n.alert ? "oklch(0.97 0.04 30)" : "oklch(0.985 0.005 200)"}
+                stroke={isFocused ? "oklch(0.55 0.16 60)" : ink}
                 strokeWidth={isFocused ? 2 : 1.4} />
               {/* icon inside node — draw via foreignObject for lucide */}
               <foreignObject x={x - 12} y={y - 12} width={24} height={24}>
