@@ -60,11 +60,13 @@ function LoginPage() {
         if (user) {
           const { data: profile } = await supabase
             .from("profiles")
-            .select("profile_completed")
+            .select("profile_completed, role")
             .eq("user_id", user.id)
             .single();
           if (profile && !profile.profile_completed) {
             navigate({ to: "/complete-profile" });
+          } else if (profile?.role === "family") {
+            navigate({ to: "/dashboard" });
           } else {
             navigate({ to: "/" });
           }
@@ -93,11 +95,13 @@ function LoginPage() {
     if (user) {
       const { data: profile } = await supabase
         .from("profiles")
-        .select("profile_completed")
+        .select("profile_completed, role")
         .eq("user_id", user.id)
         .single();
       if (profile && !profile.profile_completed) {
         navigate({ to: "/complete-profile" });
+      } else if (profile?.role === "family") {
+        navigate({ to: "/dashboard" });
       } else {
         navigate({ to: "/" });
       }
