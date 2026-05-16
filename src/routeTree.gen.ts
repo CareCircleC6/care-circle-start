@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as CompleteProfileRouteImport } from './routes/complete-profile'
@@ -18,6 +19,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/complete-profile': typeof CompleteProfileRoute
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/complete-profile': typeof CompleteProfileRoute
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,34 @@ export interface FileRoutesById {
   '/complete-profile': typeof CompleteProfileRoute
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/complete-profile' | '/login' | '/privacy' | '/terms'
+  fullPaths:
+    | '/'
+    | '/complete-profile'
+    | '/login'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/terms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/complete-profile' | '/login' | '/privacy' | '/terms'
-  id: '__root__' | '/' | '/complete-profile' | '/login' | '/privacy' | '/terms'
+  to:
+    | '/'
+    | '/complete-profile'
+    | '/login'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/terms'
+  id:
+    | '__root__'
+    | '/'
+    | '/complete-profile'
+    | '/login'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +104,7 @@ export interface RootRouteChildren {
   CompleteProfileRoute: typeof CompleteProfileRoute
   LoginRoute: typeof LoginRoute
   PrivacyRoute: typeof PrivacyRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
 }
 
@@ -86,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -124,6 +160,7 @@ const rootRouteChildren: RootRouteChildren = {
   CompleteProfileRoute: CompleteProfileRoute,
   LoginRoute: LoginRoute,
   PrivacyRoute: PrivacyRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport

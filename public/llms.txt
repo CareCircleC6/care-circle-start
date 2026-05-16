@@ -1,0 +1,11 @@
+# Care Circle Global
+
+> Care coordination and navigation hub that helps patients, families, and care coordinators organize health records, coordinate the care team, and stay ahead of crises.
+
+Care Circle Global brings scattered medical records, medications, and care updates into one HIPAA-grade workspace so every family member, provider, and coordinator sees the same complete picture.
+
+## Pages
+
+- [Home](/): Product overview, how it works, and signup for patients, families, and care coordinators.
+- [Privacy Policy](/privacy): How Care Circle Global handles personal and health information.
+- [Terms of Service](/terms): Terms governing use of the Care Circle Global platform.
