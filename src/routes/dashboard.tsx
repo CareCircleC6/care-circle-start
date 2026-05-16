@@ -447,9 +447,9 @@ function DashboardPage() {
           </div>
 
           {/* Assistant */}
-          <div id="sec-assistant" className="scroll-mt-20 bg-card border border-border rounded-2xl p-5 shadow-sm flex flex-col h-[420px]">
-            <h2 className="font-semibold mb-2">Assistant</h2>
-            <p className="text-xs text-muted-foreground mb-3">Explains. Does not diagnose.</p>
+          <div id="sec-assistant" className="scroll-mt-20 rounded-2xl p-5 shadow-md flex flex-col h-[420px] border border-violet-200 bg-gradient-to-br from-violet-100 via-sky-100 to-emerald-100">
+            <h2 className="font-semibold mb-2 text-violet-800">Assistant</h2>
+            <p className="text-xs italic text-violet-700/80 mb-3">Explains. Does not diagnose.</p>
             <div className="flex-1 overflow-y-auto space-y-3 pr-1">
               {chat.map((m, i) => (
                 <div key={i} className={`text-sm rounded-xl px-3 py-2 max-w-[90%] ${m.role === "user" ? "ml-auto bg-primary text-primary-foreground" : "bg-muted text-foreground"}`}>
