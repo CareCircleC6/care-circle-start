@@ -475,7 +475,7 @@ function DashboardPage() {
       <nav className="md:hidden fixed bottom-0 inset-x-0 z-30 bg-black text-white border-t border-black/40 shadow-lg">
         <div className="grid grid-cols-4 text-xs">
           <BottomBtn icon={Upload} label="Upload" onClick={() => scrollTo("intake")} />
-          <BottomBtn icon={FileText} label="Note" onClick={() => scrollTo("intake")} />
+          <BottomBtn icon={FileText} label="Tasks" onClick={() => scrollTo("tasks")} />
           <BottomBtn icon={Bell} label="Alerts" onClick={() => scrollTo("alerts")} />
           <BottomBtn icon={Menu} label="Ask" onClick={() => scrollTo("assistant")} />
         </div>
