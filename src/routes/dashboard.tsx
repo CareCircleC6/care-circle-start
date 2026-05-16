@@ -413,6 +413,42 @@ function Stat({ icon: Icon, label, value }: { icon: any; label: string; value: n
   );
 }
 
+function MenuList({
+  items, active, onSelect,
+}: {
+  items: { id: string; label: string; icon: any; badge?: number }[];
+  active: string;
+  onSelect: (id: string) => void;
+}) {
+  return (
+    <nav className="flex flex-col gap-0.5">
+      {items.map((it) => {
+        const Icon = it.icon;
+        const isActive = active === it.id;
+        return (
+          <button
+            key={it.id}
+            onClick={() => onSelect(it.id)}
+            className={`flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-sm text-left transition-colors ${
+              isActive
+                ? "bg-primary/10 text-primary font-medium"
+                : "text-foreground/80 hover:bg-muted hover:text-foreground"
+            }`}
+          >
+            <Icon className="w-4 h-4 shrink-0" />
+            <span className="flex-1 truncate">{it.label}</span>
+            {it.badge ? (
+              <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-red-100 text-red-700">
+                {it.badge}
+              </span>
+            ) : null}
+          </button>
+        );
+      })}
+    </nav>
+  );
+}
+
 function AlertCard({ a }: { a: typeof alerts[number] }) {
   const map = {
     moderate: "border-amber-200 bg-amber-50",
