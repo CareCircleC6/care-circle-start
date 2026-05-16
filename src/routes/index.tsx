@@ -117,7 +117,7 @@ function Index() {
       </nav>
 
       {/* Hero */}
-      <section className="pt-36 pb-16 md:pt-36 md:pb-28 px-6 overflow-hidden">
+      <section className="pt-44 pb-16 md:pt-44 md:pb-28 px-6 overflow-hidden">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-300 text-[#3B82F6] text-sm font-semibold mb-4 italic">
