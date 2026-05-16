@@ -7,6 +7,7 @@ import {
   Upload, FileText, Mic, User, Bell, Calendar, Pill, Activity,
   AlertTriangle, ChevronDown, ChevronRight, Send, Search, Plus,
   Stethoscope, FlaskConical, Users, ClipboardList, LogOut, Menu,
+  LayoutDashboard, MessageSquare, X,
 } from "lucide-react";
 
 export const Route = createFileRoute("/dashboard")({
@@ -96,6 +97,36 @@ function DashboardPage() {
     { role: "assistant", text: "Hi — I can explain what's happening with Rajesh. Try: 'What changed this week?'" },
   ]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("snapshot");
+
+  const menuItems = useMemo(() => ([
+    { id: "snapshot",  label: "Snapshot",       icon: LayoutDashboard },
+    { id: "alerts",    label: "Alerts",         icon: Bell, badge: alerts.length },
+    { id: "circle",    label: "Care circle",    icon: Users },
+    { id: "today",     label: "Today",          icon: Activity },
+    { id: "tasks",     label: "Tasks",          icon: ClipboardList, badge: tasks.filter(t => !t.done).length },
+    { id: "documents", label: "Documents",      icon: FileText },
+    { id: "briefing",  label: "Daily briefing", icon: Calendar },
+    { id: "assistant", label: "Assistant",      icon: MessageSquare },
+  ]), []);
+
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(`sec-${id}`);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    setActiveSection(id);
+    setMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const ids = ["snapshot","alerts","circle","today","tasks","documents","briefing","assistant"];
+    const obs = new IntersectionObserver((entries) => {
+      const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio);
+      if (visible[0]) setActiveSection(visible[0].target.id.replace("sec-",""));
+    }, { rootMargin: "-30% 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] });
+    ids.forEach(id => { const el = document.getElementById(`sec-${id}`); if (el) obs.observe(el); });
+    return () => obs.disconnect();
+  }, [loading]);
 
   useEffect(() => {
     const check = async () => {
@@ -144,12 +175,17 @@ function DashboardPage() {
       {/* top bar */}
       <header className="sticky top-0 z-30 bg-card/90 backdrop-blur border-b border-border">
         <div className="max-w-7xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center">
-              <span className="text-primary text-sm font-bold">cc</span>
-            </div>
-            <span className="font-semibold" style={{ fontFamily: "var(--font-display)" }}>Care Circle</span>
-          </Link>
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="sm" className="lg:hidden -ml-2" onClick={() => setMenuOpen(true)}>
+              <Menu className="w-5 h-5" />
+            </Button>
+            <Link to="/" className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center">
+                <span className="text-primary text-sm font-bold">cc</span>
+              </div>
+              <span className="font-semibold" style={{ fontFamily: "var(--font-display)" }}>Care Circle</span>
+            </Link>
+          </div>
           <div className="flex items-center gap-2">
             <span className="hidden md:inline text-sm text-muted-foreground">{firstName || userEmail}</span>
             <Button variant="ghost" size="sm" onClick={handleLogout}><LogOut className="w-4 h-4 mr-1" />Sign out</Button>
@@ -169,11 +205,32 @@ function DashboardPage() {
         </div>
       ))}
 
-      <main className="max-w-7xl mx-auto px-4 md:px-6 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* LEFT + CENTER */}
-        <section className="lg:col-span-2 space-y-6">
+      {/* Mobile menu overlay */}
+      {menuOpen && (
+        <div className="lg:hidden fixed inset-0 z-40 bg-black/40" onClick={() => setMenuOpen(false)}>
+          <aside className="absolute left-0 top-0 bottom-0 w-72 bg-card border-r border-border p-4 overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-4">
+              <span className="font-semibold">Menu</span>
+              <Button variant="ghost" size="sm" onClick={() => setMenuOpen(false)}><X className="w-4 h-4" /></Button>
+            </div>
+            <MenuList items={menuItems} active={activeSection} onSelect={scrollTo} />
+          </aside>
+        </div>
+      )}
+
+      <main className="max-w-7xl mx-auto px-4 md:px-6 py-6 grid grid-cols-1 lg:grid-cols-[200px_1fr_320px] gap-6">
+        {/* LEFT MENU (desktop) */}
+        <aside className="hidden lg:block">
+          <div className="sticky top-20">
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-2 px-2">Dashboard</p>
+            <MenuList items={menuItems} active={activeSection} onSelect={scrollTo} />
+          </div>
+        </aside>
+
+        {/* CENTER */}
+        <section className="space-y-6 min-w-0">
           {/* Snapshot */}
-          <div className="bg-card border border-border rounded-2xl p-5 md:p-6 shadow-sm">
+          <div id="sec-snapshot" className="scroll-mt-20 bg-card border border-border rounded-2xl p-5 md:p-6 shadow-sm">
             <div className="flex flex-wrap items-start gap-4">
               <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                 <User className="w-7 h-7 text-primary" />
@@ -206,7 +263,7 @@ function DashboardPage() {
           </div>
 
           {/* Alerts */}
-          <div className="bg-card border border-border rounded-2xl p-5 md:p-6 shadow-sm">
+          <div id="sec-alerts" className="scroll-mt-20 bg-card border border-border rounded-2xl p-5 md:p-6 shadow-sm">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold flex items-center gap-2"><Bell className="w-4 h-4 text-primary" />Alerts</h2>
               <span className="text-xs text-muted-foreground">{alerts.length} active</span>
@@ -217,7 +274,7 @@ function DashboardPage() {
           </div>
 
           {/* Circle */}
-          <div className="bg-card border border-border rounded-2xl p-5 md:p-6 shadow-sm">
+          <div id="sec-circle" className="scroll-mt-20 bg-card border border-border rounded-2xl p-5 md:p-6 shadow-sm">
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-lg font-semibold">Care circle</h2>
               <div className="flex gap-1 text-xs">
@@ -235,7 +292,7 @@ function DashboardPage() {
           </div>
 
           {/* Timeline */}
-          <div className="bg-card border border-border rounded-2xl p-5 md:p-6 shadow-sm">
+          <div id="sec-today" className="scroll-mt-20 bg-card border border-border rounded-2xl p-5 md:p-6 shadow-sm">
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-lg font-semibold">Today</h2>
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -254,7 +311,7 @@ function DashboardPage() {
 
           {/* Tasks + Documents */}
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-card border border-border rounded-2xl p-5 shadow-sm">
+            <div id="sec-tasks" className="scroll-mt-20 bg-card border border-border rounded-2xl p-5 shadow-sm">
               <div className="flex items-center justify-between mb-3">
                 <h2 className="font-semibold">Tasks</h2>
                 <Button size="sm" variant="ghost" className="h-7"><Plus className="w-4 h-4" /></Button>
@@ -269,7 +326,7 @@ function DashboardPage() {
                 ))}
               </ul>
             </div>
-            <div className="bg-card border border-border rounded-2xl p-5 shadow-sm">
+            <div id="sec-documents" className="scroll-mt-20 bg-card border border-border rounded-2xl p-5 shadow-sm">
               <div className="flex items-center justify-between mb-3">
                 <h2 className="font-semibold">Documents</h2>
                 <div className="relative">
@@ -293,7 +350,7 @@ function DashboardPage() {
         {/* RIGHT sidebar */}
         <aside className="space-y-6">
           {/* Daily briefing */}
-          <div className="bg-card border border-border rounded-2xl p-5 shadow-sm">
+          <div id="sec-briefing" className="scroll-mt-20 bg-card border border-border rounded-2xl p-5 shadow-sm">
             <button className="w-full flex items-center justify-between" onClick={() => setBriefingOpen(o => !o)}>
               <h2 className="font-semibold">Daily briefing</h2>
               <ChevronDown className={`w-4 h-4 transition-transform ${briefingOpen ? "" : "-rotate-90"}`} />
@@ -308,7 +365,7 @@ function DashboardPage() {
           </div>
 
           {/* Assistant */}
-          <div className="bg-card border border-border rounded-2xl p-5 shadow-sm flex flex-col h-[420px]">
+          <div id="sec-assistant" className="scroll-mt-20 bg-card border border-border rounded-2xl p-5 shadow-sm flex flex-col h-[420px]">
             <h2 className="font-semibold mb-2">Assistant</h2>
             <p className="text-xs text-muted-foreground mb-3">Explains. Does not diagnose.</p>
             <div className="flex-1 overflow-y-auto space-y-3 pr-1">
@@ -353,6 +410,42 @@ function Stat({ icon: Icon, label, value }: { icon: any; label: string; value: n
       <span className="font-medium">{value}</span>
       <span className="text-muted-foreground">{label}</span>
     </div>
+  );
+}
+
+function MenuList({
+  items, active, onSelect,
+}: {
+  items: { id: string; label: string; icon: any; badge?: number }[];
+  active: string;
+  onSelect: (id: string) => void;
+}) {
+  return (
+    <nav className="flex flex-col gap-0.5">
+      {items.map((it) => {
+        const Icon = it.icon;
+        const isActive = active === it.id;
+        return (
+          <button
+            key={it.id}
+            onClick={() => onSelect(it.id)}
+            className={`flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-sm text-left transition-colors ${
+              isActive
+                ? "bg-primary/10 text-primary font-medium"
+                : "text-foreground/80 hover:bg-muted hover:text-foreground"
+            }`}
+          >
+            <Icon className="w-4 h-4 shrink-0" />
+            <span className="flex-1 truncate">{it.label}</span>
+            {it.badge ? (
+              <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-red-100 text-red-700">
+                {it.badge}
+              </span>
+            ) : null}
+          </button>
+        );
+      })}
+    </nav>
   );
 }
 
