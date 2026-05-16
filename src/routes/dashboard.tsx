@@ -104,6 +104,7 @@ function DashboardPage() {
 
   const menuItems = useMemo(() => ([
     { id: "snapshot",  label: "Snapshot",       icon: LayoutDashboard },
+    { id: "intake",    label: "Info intake",    icon: Upload },
     { id: "alerts",    label: "Alerts",         icon: Bell, badge: alerts.length },
     { id: "circle",    label: "Care circle",    icon: Users },
     { id: "today",     label: "Today",          icon: Activity },
@@ -121,7 +122,7 @@ function DashboardPage() {
   };
 
   useEffect(() => {
-    const ids = ["snapshot","alerts","circle","today","tasks","documents","briefing","assistant"];
+    const ids = ["snapshot","intake","alerts","circle","today","tasks","documents","briefing","assistant"];
     const obs = new IntersectionObserver((entries) => {
       const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio);
       if (visible[0]) setActiveSection(visible[0].target.id.replace("sec-",""));
@@ -269,13 +270,43 @@ function DashboardPage() {
                 </div>
               </div>
             </div>
-            <div className="mt-5 flex flex-wrap gap-2">
-              <Button size="sm" onClick={() => fileInputRef.current?.click()}><Upload className="w-4 h-4 mr-1.5" />Upload file</Button>
-              <Button size="sm" variant="outline"><FileText className="w-4 h-4 mr-1.5" />Add note</Button>
-              <Button size="sm" variant="outline"><Mic className="w-4 h-4 mr-1.5" />Voice note</Button>
+            <div className="mt-5">
               <Button size="sm" variant="ghost">Open full profile <ChevronRight className="w-4 h-4 ml-1" /></Button>
-              <input ref={fileInputRef} type="file" className="hidden" accept="image/*,.pdf" />
             </div>
+          </div>
+
+          {/* Info Intake */}
+          <div id="sec-intake" className="scroll-mt-20 bg-card border border-border rounded-2xl p-5 md:p-6 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold flex items-center gap-2">
+                <Upload className="w-4 h-4 text-primary" />Info intake
+              </h2>
+              <span className="text-xs text-muted-foreground">Add updates & documents</span>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">
+              Capture new updates about Rajesh — upload a lab report, write a quick note, or record a voice update from the caregiver.
+            </p>
+            <div className="grid sm:grid-cols-3 gap-3">
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="flex flex-col items-start gap-2 p-4 rounded-xl border border-dashed border-border hover:border-primary hover:bg-primary/5 transition-colors text-left"
+              >
+                <Upload className="w-5 h-5 text-primary" />
+                <span className="font-medium text-sm">Upload document</span>
+                <span className="text-xs text-muted-foreground">Labs, prescriptions, scans (PDF/JPG)</span>
+              </button>
+              <button className="flex flex-col items-start gap-2 p-4 rounded-xl border border-dashed border-border hover:border-primary hover:bg-primary/5 transition-colors text-left">
+                <FileText className="w-5 h-5 text-primary" />
+                <span className="font-medium text-sm">Add note</span>
+                <span className="text-xs text-muted-foreground">Symptoms, observations, questions</span>
+              </button>
+              <button className="flex flex-col items-start gap-2 p-4 rounded-xl border border-dashed border-border hover:border-primary hover:bg-primary/5 transition-colors text-left">
+                <Mic className="w-5 h-5 text-primary" />
+                <span className="font-medium text-sm">Voice note</span>
+                <span className="text-xs text-muted-foreground">Quick caregiver update</span>
+              </button>
+            </div>
+            <input ref={fileInputRef} type="file" className="hidden" accept="image/*,.pdf" />
           </div>
 
           {/* Alerts */}
