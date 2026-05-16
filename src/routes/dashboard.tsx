@@ -274,7 +274,7 @@ function DashboardPage() {
               </div>
             </div>
             <div className="mt-5">
-              <Button size="sm" variant="ghost">Open full profile <ChevronRight className="w-4 h-4 ml-1" /></Button>
+              <Button size="sm" variant="ghost" className="italic">Open full profile <ChevronRight className="w-4 h-4 ml-1" /></Button>
             </div>
           </div>
 
