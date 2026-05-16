@@ -449,15 +449,8 @@ function DashboardPage() {
           {/* Assistant */}
           <div id="sec-assistant" className="scroll-mt-20 rounded-2xl p-5 shadow-sm flex flex-col h-[420px] border border-border bg-white">
             <h2 className="font-semibold mb-2">Assistant</h2>
-            <p className="text-xs italic text-muted-foreground mb-3">Explains. Does not diagnose.</p>
-            <div className="flex-1 overflow-y-auto space-y-3 pr-1">
-              {chat.map((m, i) => (
-                <div key={i} className={`text-sm rounded-xl px-3 py-2 max-w-[90%] ${m.role === "user" ? "ml-auto bg-primary text-primary-foreground" : "bg-muted text-foreground"}`}>
-                  {m.text}
-                </div>
-              ))}
-            </div>
-            <div className="mt-3 flex gap-2 rounded-xl p-2 border border-violet-200 bg-gradient-to-br from-violet-100 via-sky-100 to-emerald-100">
+            <p className="text-xs italic text-muted-foreground mb-2">Explains. Does not diagnose.</p>
+            <div className="flex gap-2 rounded-xl p-2 border border-violet-200 bg-gradient-to-br from-violet-100 via-sky-100 to-emerald-100">
               <Input
                 placeholder="Ask about Dad…"
                 value={chatInput}
@@ -466,6 +459,13 @@ function DashboardPage() {
                 className="h-9 bg-white"
               />
               <Button size="sm" className="h-9" onClick={handleSend}><Send className="w-4 h-4" /></Button>
+            </div>
+            <div className="flex-1 overflow-y-auto space-y-3 pr-1 mt-3">
+              {chat.map((m, i) => (
+                <div key={i} className={`text-sm rounded-xl px-3 py-2 max-w-[90%] ${m.role === "user" ? "ml-auto bg-primary text-primary-foreground" : "bg-muted text-foreground"}`}>
+                  {m.text}
+                </div>
+              ))}
             </div>
           </div>
         </aside>
