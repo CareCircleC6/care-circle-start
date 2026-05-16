@@ -283,7 +283,7 @@ function DashboardPage() {
           <div id="sec-intake" className="scroll-mt-20 bg-card border border-border rounded-2xl p-5 md:p-6 shadow-sm">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold flex items-center gap-2">
-                <Upload className="w-4 h-4 text-primary" />Info intake
+                <Upload className="w-4 h-4 text-blue-600" />Info intake
               </h2>
               <span className="text-xs italic font-semibold text-muted-foreground">Add updates & documents</span>
             </div>
@@ -295,17 +295,17 @@ function DashboardPage() {
                 onClick={() => fileInputRef.current?.click()}
                 className="flex flex-col items-start gap-2 p-4 rounded-xl border border-dashed border-border hover:border-primary hover:bg-primary/5 transition-colors text-left"
               >
-                <Upload className="w-5 h-5 text-primary" />
+                <Upload className="w-5 h-5 text-blue-600" />
                 <span className="font-medium text-sm">Upload document</span>
                 <span className="text-xs text-muted-foreground">Labs, prescriptions, scans (PDF/JPG)</span>
               </button>
               <button className="flex flex-col items-start gap-2 p-4 rounded-xl border border-dashed border-border hover:border-primary hover:bg-primary/5 transition-colors text-left">
-                <FileText className="w-5 h-5 text-primary" />
+                <FileText className="w-5 h-5 text-blue-600" />
                 <span className="font-medium text-sm">Add note</span>
                 <span className="text-xs text-muted-foreground">Symptoms, observations, questions</span>
               </button>
               <button className="flex flex-col items-start gap-2 p-4 rounded-xl border border-dashed border-border hover:border-primary hover:bg-primary/5 transition-colors text-left">
-                <Mic className="w-5 h-5 text-primary" />
+                <Mic className="w-5 h-5 text-blue-600" />
                 <span className="font-medium text-sm flex items-center gap-2">
                   Voice note
                   <span className="italic text-[11px] font-normal text-muted-foreground">Coming soon</span>
