@@ -75,14 +75,17 @@ const documents = [
 ];
 
 const circleNodes = [
-  { id: "lata",   label: "Lata",      sub: "Caregiver · onsite",       angle: 270, alert: false, alertCount: 0, icon: Users },
-  { id: "iyer",   label: "Dr Iyer",   sub: "Eyes · overdue",           angle: 315, alert: true,  alertCount: 1, icon: Stethoscope },
-  { id: "log",    label: "Daily log", sub: "Last: 4 PM",               angle: 0,   alert: false, alertCount: 0, icon: ClipboardList },
-  { id: "vitals", label: "Vitals",    sub: "BP ↑ glucose ↑",           angle: 45,  alert: true,  alertCount: 2, icon: Activity },
-  { id: "meds",   label: "Meds",      sub: "5 active · 1 low",         angle: 90,  alert: true,  alertCount: 1, icon: Pill },
-  { id: "khanna", label: "Dr Khanna", sub: "Cardio · Thu",             angle: 135, alert: false, alertCount: 0, icon: Stethoscope },
-  { id: "labs",   label: "Labs",      sub: "HbA1c overdue",            angle: 180, alert: true,  alertCount: 1, icon: FlaskConical },
-  { id: "appts",  label: "Appts",     sub: "2 upcoming · 1 overdue",   angle: 225, alert: true,  alertCount: 1, icon: Calendar },
+  { id: "lata",   label: "Lata",      sub: "Caregiver · onsite",       angle: 270, alert: false, alertCount: 0, icon: Users,        alertDetails: [] as { title: string; why: string; action: string }[] },
+  { id: "iyer",   label: "Dr Iyer",   sub: "Eyes · overdue",           angle: 315, alert: true,  alertCount: 1, icon: Stethoscope,  alertDetails: [{ title: "Eye check overdue", why: "Annual review with Dr Iyer pending.", action: "Schedule" }] },
+  { id: "log",    label: "Daily log", sub: "Last: 4 PM",               angle: 0,   alert: false, alertCount: 0, icon: ClipboardList, alertDetails: [] },
+  { id: "vitals", label: "Vitals",    sub: "BP ↑ glucose ↑",           angle: 45,  alert: true,  alertCount: 2, icon: Activity,     alertDetails: [
+    { title: "BP elevated 3 days in a row", why: "Average 158/96, above goal of 130/80. Increases stroke risk.", action: "Call Dr Khanna" },
+    { title: "Glucose trending up", why: "Fasting glucose rose 12% over last week.", action: "Review diet" },
+  ] },
+  { id: "meds",   label: "Meds",      sub: "5 active · 1 low",         angle: 90,  alert: true,  alertCount: 1, icon: Pill,         alertDetails: [{ title: "Telmisartan running low", why: "5 days remaining. Refill takes 2–3 days locally.", action: "Order refill" }] },
+  { id: "khanna", label: "Dr Khanna", sub: "Cardio · Thu",             angle: 135, alert: false, alertCount: 0, icon: Stethoscope,  alertDetails: [] },
+  { id: "labs",   label: "Labs",      sub: "HbA1c overdue",            angle: 180, alert: true,  alertCount: 1, icon: FlaskConical, alertDetails: [{ title: "HbA1c lab overdue", why: "Last test was 4 months ago. Quarterly tracking recommended.", action: "Book lab" }] },
+  { id: "appts",  label: "Appts",     sub: "2 upcoming · 1 overdue",   angle: 225, alert: true,  alertCount: 1, icon: Calendar,     alertDetails: [{ title: "1 appointment overdue", why: "Annual eye check with Dr Iyer is past due.", action: "Reschedule" }] },
 ];
 
 /* ----------------- component ----------------- */
@@ -518,13 +521,16 @@ function AlertCard({ a }: { a: typeof alerts[number] }) {
 }
 
 function CircleViz({ focused, setFocused }: { focused: string | null; setFocused: (id: string | null) => void }) {
+  const [popup, setPopup] = useState<{ id: string; x: number; y: number } | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const size = 520;
   const cx = size / 2, cy = size / 2;
   const r = 180;
   const nodeR = 34;
   const ink = "oklch(0.35 0.04 240)";
+  const popupNode = popup ? circleNodes.find(n => n.id === popup.id) : null;
   return (
-    <div className="relative w-full overflow-x-auto">
+    <div ref={containerRef} className="relative w-full overflow-x-auto">
       <svg viewBox={`0 0 ${size} ${size}`} className="w-full max-w-xl mx-auto h-auto">
         {/* outer hand-drawn ring */}
         <circle cx={cx} cy={cy} r={r + nodeR + 14} fill="none" stroke={ink} strokeWidth={1} strokeDasharray="2 6" opacity={0.25} />
@@ -594,7 +600,38 @@ function CircleViz({ focused, setFocused }: { focused: string | null; setFocused
 
               {/* red alert badge with count */}
               {n.alert && n.alertCount > 0 && (
-                <g>
+                <g
+                  style={{ cursor: "pointer" }}
+                  onMouseEnter={(e) => {
+                    e.stopPropagation();
+                    const rect = containerRef.current?.getBoundingClientRect();
+                    const svg = (e.currentTarget.ownerSVGElement) as SVGSVGElement | null;
+                    if (!svg || !rect) return;
+                    const ctm = svg.getScreenCTM();
+                    if (!ctm) return;
+                    const pt = svg.createSVGPoint();
+                    pt.x = x + nodeR - 6;
+                    pt.y = y - nodeR + 6;
+                    const screen = pt.matrixTransform(ctm);
+                    setPopup({ id: n.id, x: screen.x - rect.left, y: screen.y - rect.top });
+                  }}
+                  onMouseLeave={() => setPopup(p => (p?.id === n.id ? null : p))}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const rect = containerRef.current?.getBoundingClientRect();
+                    const svg = (e.currentTarget.ownerSVGElement) as SVGSVGElement | null;
+                    if (!svg || !rect) return;
+                    const ctm = svg.getScreenCTM();
+                    if (!ctm) return;
+                    const pt = svg.createSVGPoint();
+                    pt.x = x + nodeR - 6;
+                    pt.y = y - nodeR + 6;
+                    const screen = pt.matrixTransform(ctm);
+                    setPopup({ id: n.id, x: screen.x - rect.left, y: screen.y - rect.top });
+                  }}
+                >
+                  {/* invisible larger hit area */}
+                  <circle cx={x + nodeR - 6} cy={y - nodeR + 6} r={16} fill="transparent" />
                   <circle cx={x + nodeR - 6} cy={y - nodeR + 6} r={10}
                     fill="oklch(0.58 0.22 25)" stroke="white" strokeWidth={1.5} />
                   <text x={x + nodeR - 6} y={y - nodeR + 10} textAnchor="middle"
@@ -618,6 +655,41 @@ function CircleViz({ focused, setFocused }: { focused: string | null; setFocused
           );
         })}
       </svg>
+
+      {popupNode && popup && (
+        <div
+          className="absolute z-30 w-64 bg-card border border-border rounded-xl shadow-lg p-3 text-sm"
+          style={{
+            left: Math.max(8, Math.min(popup.x - 128, (containerRef.current?.clientWidth ?? 600) - 264)),
+            top: popup.y + 14,
+          }}
+          onMouseEnter={() => { /* keep open */ }}
+          onMouseLeave={() => setPopup(null)}
+        >
+          <div className="flex items-center gap-2 mb-2">
+            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100 text-red-700 text-xs font-bold">
+              {popupNode.alertCount}
+            </span>
+            <span className="font-semibold">{popupNode.label} alerts</span>
+            <button
+              className="ml-auto text-muted-foreground hover:text-foreground"
+              onClick={(e) => { e.stopPropagation(); setPopup(null); }}
+              aria-label="Close"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+          <ul className="space-y-2">
+            {popupNode.alertDetails.map((d, i) => (
+              <li key={i} className="border-l-2 border-red-500 pl-2">
+                <p className="font-medium text-[13px]">{d.title}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{d.why}</p>
+                <button className="mt-1.5 text-xs font-medium text-primary hover:underline">{d.action} →</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
