@@ -14,7 +14,7 @@ import {
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Dashboard — Care Circle Global" },
+      { title: "Dashboard - Care Circle Global" },
       { name: "description", content: "Coordinate your parent's care from one calm, clear view: status, alerts, medications, appointments, and tasks." },
       { name: "robots", content: "noindex" },
     ],
@@ -42,7 +42,7 @@ const alerts = [
 ];
 
 const briefing = [
-  "Status: Attention — BP trending up, one lab overdue.",
+  "Status: Attention - BP trending up, one lab overdue.",
   "Lata logged breakfast and morning meds on time today.",
   "Active risks: elevated BP, low Telmisartan supply.",
   "Overdue: HbA1c lab, eye check with Dr Iyer.",
@@ -68,10 +68,10 @@ const tasks = [
 ];
 
 const documents = [
-  { id: 1, name: "Lipid panel — Oct.pdf", tag: "lab", date: "Oct 12" },
+  { id: 1, name: "Lipid panel - Oct.pdf", tag: "lab", date: "Oct 12" },
   { id: 2, name: "Echo report.pdf", tag: "scan", date: "Sep 28" },
   { id: 3, name: "Discharge summary.pdf", tag: "note", date: "Aug 14" },
-  { id: 4, name: "Prescription — Dr Khanna.jpg", tag: "prescription", date: "Aug 02" },
+  { id: 4, name: "Prescription - Dr Khanna.jpg", tag: "prescription", date: "Aug 02" },
 ];
 
 const circleNodes = [
@@ -99,7 +99,7 @@ function DashboardPage() {
   const [circleFilter, setCircleFilter] = useState<"All" | "People" | "Domains" | "Risks">("All");
   const [chatInput, setChatInput] = useState("");
   const [chat, setChat] = useState<{ role: "user" | "assistant"; text: string }[]>([
-    { role: "assistant", text: "Hi — I can explain what's happening with Rajesh. Try: 'What changed this week?'" },
+    { role: "assistant", text: "Hi - I can explain what's happening with Rajesh. Try: 'What changed this week?'" },
   ]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -203,7 +203,7 @@ function DashboardPage() {
         </div>
       </header>
 
-      {/* critical banner — sticky, dismissible */}
+      {/* critical banner - sticky, dismissible */}
       {critical.length > 0 && (
         <div className="sticky top-14 z-20 shadow-md">
           {critical.map(c => (
@@ -285,10 +285,10 @@ function DashboardPage() {
               <h2 className="text-lg font-semibold flex items-center gap-2">
                 <Upload className="w-4 h-4 text-primary" />Info intake
               </h2>
-              <span className="text-xs text-muted-foreground">Add updates & documents</span>
+              <span className="text-xs italic font-semibold text-muted-foreground">Add updates & documents</span>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              Capture new updates about Rajesh — upload a lab report, write a quick note, or record a voice update from the caregiver.
+              Capture new updates about Rajesh - upload a lab report, write a quick note, or record a voice update from the caregiver.
             </p>
             <div className="grid sm:grid-cols-3 gap-3">
               <button
@@ -349,7 +349,7 @@ function DashboardPage() {
             </div>
             <CircleViz focused={focusedNode} setFocused={setFocusedNode} filter={circleFilter} />
             <div className="mt-4 rounded-xl px-4 py-3 text-sm flex flex-wrap items-center gap-3 bg-gradient-to-r from-amber-100 via-orange-100 to-rose-100 border border-orange-200 shadow-sm">
-              <span className="font-semibold text-orange-700">Focused — Vitals:</span>
+              <span className="font-semibold text-orange-700">Focused - Vitals:</span>
               <span className="font-semibold text-foreground/90">BP 158/96 · 3-day avg above goal</span>
               <Button size="sm" variant="ghost" className="ml-auto h-7 font-semibold text-orange-700 hover:bg-orange-200/60">Open detail <ChevronRight className="w-3.5 h-3.5 ml-1" /></Button>
             </div>
@@ -647,7 +647,7 @@ function CircleViz({ focused, setFocused, filter }: { focused: string | null; se
                   : ink
                 }
                 strokeWidth={isFocused ? 2 : 1.4} />
-              {/* icon inside node — draw via foreignObject for lucide */}
+              {/* icon inside node - draw via foreignObject for lucide */}
               <foreignObject x={x - 12} y={y - 12} width={24} height={24}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 24, height: 24, color: (isVitals || isHoverBlue) ? "white" : n.alert ? "oklch(0.55 0.18 30)" : "oklch(0.45 0.04 240)" }}>
                   <n.icon width={20} height={20} />
@@ -798,7 +798,7 @@ function BottomBtn({ icon: Icon, label }: { icon: any; label: string }) {
 function answerFor(q: string): string {
   const s = q.toLowerCase();
   if (s.includes("medic")) return "Rajesh is on 5 active medications. Telmisartan is low (5 days left).";
-  if (s.includes("alert") || s.includes("important")) return "The BP alert matters because the 3-day average is 158/96, above his 130/80 goal — this raises stroke risk.";
+  if (s.includes("alert") || s.includes("important")) return "The BP alert matters because the 3-day average is 158/96, above his 130/80 goal - this raises stroke risk.";
   if (s.includes("change") || s.includes("week")) return "This week: BP trended up, head fog noted once, HbA1c lab is now overdue.";
   if (s.includes("task") || s.includes("overdue")) return "Overdue: refill Telmisartan, book HbA1c lab, prep notes for Thu cardio call.";
   return "I can answer questions about medications, alerts, recent changes, and tasks. I won't diagnose or prescribe.";
