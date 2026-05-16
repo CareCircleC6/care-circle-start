@@ -174,7 +174,7 @@ function DashboardPage() {
   const critical = alerts.filter(a => a.level === "critical" && !dismissedCritical.includes(a.id));
 
   return (
-    <div className="min-h-screen bg-[oklch(0.985_0.003_180)] pb-24 md:pb-8">
+    <div className="min-h-screen bg-[oklch(0.985_0.003_180)] pb-24 md:pb-8 text-[15px] md:text-[16px] leading-relaxed text-foreground">
       {/* top bar */}
       <header className="sticky top-0 z-30 bg-card/90 backdrop-blur border-b border-border">
         <div className="max-w-7xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
