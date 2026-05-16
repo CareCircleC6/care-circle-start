@@ -365,7 +365,11 @@ function DashboardPage() {
                 <button className="px-2 py-1 rounded hover:bg-muted">Tomorrow →</button>
               </div>
             </div>
-            <Timeline />
+            <div className="overflow-x-auto">
+              <div className="min-w-[900px]">
+                <Timeline />
+              </div>
+            </div>
             <div className="flex gap-3 mt-3 text-xs text-muted-foreground">
               <Legend color="bg-emerald-500" label="routine" />
               <Legend color="bg-amber-500" label="watch" />
