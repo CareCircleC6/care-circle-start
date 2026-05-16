@@ -305,7 +305,10 @@ function DashboardPage() {
               </button>
               <button className="flex flex-col items-start gap-2 p-4 rounded-xl border border-dashed border-border hover:border-primary hover:bg-primary/5 transition-colors text-left">
                 <Mic className="w-5 h-5 text-primary" />
-                <span className="font-medium text-sm">Voice note</span>
+                <span className="font-medium text-sm flex items-center gap-2">
+                  Voice note
+                  <span className="italic text-[11px] font-normal text-muted-foreground">Coming soon</span>
+                </span>
                 <span className="text-xs text-muted-foreground">Quick caregiver update</span>
               </button>
             </div>
