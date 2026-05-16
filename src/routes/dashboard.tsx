@@ -410,9 +410,27 @@ function DashboardPage() {
             </button>
             {briefingOpen && (
               <ul className="mt-3 space-y-2 text-sm text-foreground/90">
-                {briefing.map((b, i) => (
-                  <li key={i} className="flex gap-2"><span className="text-primary mt-1.5 w-1 h-1 rounded-full bg-primary shrink-0" />{b}</li>
-                ))}
+                {briefing.map((b, i) => {
+                  const parts = b.split(/(Status:|Overdue:|Next 48h:|Active risks:)/g);
+                  const colorFor = (kw: string) =>
+                    kw === "Status:"      ? "text-amber-600 font-semibold" :
+                    kw === "Overdue:"     ? "text-red-600 font-semibold"   :
+                    kw === "Next 48h:"    ? "text-blue-600 font-semibold"  :
+                    kw === "Active risks:"? "text-orange-600 font-semibold": "";
+                  return (
+                    <li key={i} className="flex gap-2">
+                      <span className="text-primary mt-1.5 w-1 h-1 rounded-full bg-primary shrink-0" />
+                      <span>
+                        {parts.map((p, j) => {
+                          const cls = colorFor(p);
+                          return cls
+                            ? <span key={j} className={cls}>{p}</span>
+                            : <span key={j}>{p}</span>;
+                        })}
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
             )}
           </div>
