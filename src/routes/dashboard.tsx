@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import ccLogoIcon from "@/assets/cc-logo-icon.png";
 import {
   Upload, FileText, Mic, User, Bell, Calendar, Pill, Activity,
   AlertTriangle, ChevronDown, ChevronRight, Send, Search, Plus,
@@ -180,10 +181,13 @@ function DashboardPage() {
               <Menu className="w-5 h-5" />
             </Button>
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center">
-                <span className="text-primary text-sm font-bold">cc</span>
+              <img src={ccLogoIcon} alt="Care Circle" className="w-8 h-8 md:hidden" />
+              <div className="hidden md:flex items-center gap-2">
+                <div className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center">
+                  <span className="text-primary text-sm font-bold">cc</span>
+                </div>
+                <span className="font-semibold" style={{ fontFamily: "var(--font-display)" }}>Care Circle</span>
               </div>
-              <span className="font-semibold" style={{ fontFamily: "var(--font-display)" }}>Care Circle</span>
             </Link>
           </div>
           <div className="flex items-center gap-2">
