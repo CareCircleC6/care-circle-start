@@ -450,13 +450,13 @@ function DashboardPage() {
           <div id="sec-assistant" className="scroll-mt-20 rounded-2xl p-5 shadow-sm flex flex-col h-[420px] border border-border bg-white">
             <h2 className="font-semibold mb-2">Assistant</h2>
             <p className="text-xs italic text-muted-foreground mb-2">Explains. Does not diagnose.</p>
-            <div className="flex gap-2 rounded-xl p-2 border border-violet-200 bg-gradient-to-br from-violet-100 via-sky-100 to-emerald-100">
+            <div className="flex gap-2">
               <Input
                 placeholder="Ask about Dad…"
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                className="h-9 bg-white"
+                className="h-9 bg-gradient-to-br from-violet-100 via-sky-100 to-emerald-100 border-violet-200"
               />
               <Button size="sm" className="h-9" onClick={handleSend}><Send className="w-4 h-4" /></Button>
             </div>
