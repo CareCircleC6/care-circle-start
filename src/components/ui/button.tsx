@@ -47,7 +47,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props}>
         {children}
-        {showArrow && <MoveUpRight className="ml-1 w-5 h-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />}
+        {showArrow && <MoveUpRight className="w-5 h-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />}
       </Comp>
     );
   },
