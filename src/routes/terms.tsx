@@ -159,6 +159,7 @@ function TermsPage() {
           <div className="flex gap-6 text-sm text-muted-foreground">
             <Link to="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-foreground transition-colors">Terms of Service</Link>
+            <Link to="/investor-relations" className="hover:text-foreground transition-colors">Investor Relations</Link>
           </div>
         </div>
       </footer>
