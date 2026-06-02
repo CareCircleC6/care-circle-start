@@ -108,6 +108,9 @@ function Index() {
             <img src={logoIcon} alt="Care Circle Global" className="h-12 w-12 object-contain" />
           </div>
           <div className="flex items-center gap-2 md:gap-3">
+            <a href="https://myequityholdings.com" target="_blank" rel="noopener noreferrer" className="flex-1 md:flex-none">
+              <Button variant="heroGhost" size="xl" className="w-full md:w-auto md:h-16 md:px-6 md:text-lg">Investor Login</Button>
+            </a>
             <Link to="/login" className="flex-1 md:flex-none">
               <Button variant="heroGhost" size="xl" className="w-full md:w-auto md:h-16 md:px-12 md:text-lg">Log In</Button>
             </Link>

@@ -16,7 +16,7 @@ function TermsPage() {
   return (
     <div className="min-h-screen bg-background">
       <nav className="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-md border-b border-border/50">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <div className="flex flex-col justify-between" style={{ fontFamily: "var(--font-display)" }}>
               <span className="text-[1.15rem] font-bold leading-none">
@@ -26,6 +26,7 @@ function TermsPage() {
               <span className="text-[1.15rem] font-bold leading-none" style={{ color: "#1B365D" }}>Global</span>
             </div>
           </Link>
+          <a href="https://myequityholdings.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-[#1B365D] hover:underline">Investor Login</a>
         </div>
       </nav>
 
