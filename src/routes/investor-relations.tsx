@@ -64,6 +64,12 @@ function InvestorRelationsPage() {
               Investor Relations<br />
             </p>
           </section>
+
+          <section className="mb-10">
+            <p className="text-black leading-relaxed">
+              Login to Investor relation Portal - <a href="https://myequityholdings.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">https://myequityholdings.com</a>
+            </p>
+          </section>
         </div>
       </main>
 
