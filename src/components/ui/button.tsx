@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { MoveRight } from "lucide-react";
+import { MoveUpRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -47,7 +47,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props}>
         {children}
-        {showArrow && <MoveRight className="ml-1 w-5 h-5 transition-transform group-hover:translate-x-0.5" />}
+        {showArrow && <MoveUpRight className="ml-1 w-5 h-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />}
       </Comp>
     );
   },
