@@ -26,7 +26,7 @@ function InvestorRelationsPage() {
               <span className="text-[1.15rem] font-bold leading-none" style={{ color: "#1B365D" }}>Global</span>
             </div>
           </Link>
-          <a href="https://myequityholdings.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-[#1B365D] hover:underline">investor Login</a>
+          <a href="https://myequityholdings.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-[#1B365D] hover:underline"class="inline-flex items-center gap-1">Investor Login <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
         </div>
       </nav>
 
