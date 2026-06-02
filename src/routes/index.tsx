@@ -112,9 +112,7 @@ function Index() {
               <Button variant="heroGhost" size="xl" className="w-full md:w-auto md:h-16 md:px-12 md:text-lg">Log In</Button>
             </Link>
             <Button variant="hero" size="xl" className="flex-1 md:flex-none md:h-16 md:px-12 md:text-lg" onClick={() => setModalOpen(true)}>Get Started</Button>
-            <a href="https://myequityholdings.com" target="_blank" rel="noopener noreferrer" className="flex-1 md:flex-none">
-              <Button variant="heroGhost" size="xl" className="w-full md:w-auto md:h-16 md:px-6 md:text-lg">Investor Login</Button>
-            </a>
+            <a href="https://myequityholdings.com" target="_blank" rel="noopener noreferrer" className="flex-1 md:flex-none text-sm font-medium text-[#1B365D] hover:underline">investor Login</a>
           </div>
         </div>
       </nav>

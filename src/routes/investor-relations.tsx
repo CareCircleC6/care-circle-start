@@ -26,7 +26,7 @@ function InvestorRelationsPage() {
               <span className="text-[1.15rem] font-bold leading-none" style={{ color: "#1B365D" }}>Global</span>
             </div>
           </Link>
-          <a href="https://myequityholdings.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-[#1B365D] hover:underline">Investor Login</a>
+          <a href="https://myequityholdings.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-[#1B365D] hover:underline">investor Login</a>
         </div>
       </nav>
 
